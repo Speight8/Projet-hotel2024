@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="601.0" style="-fx-background-color: #1B4B65
+;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.projet.miniprojet.ClientController">
+    <children>
+        <TextField fx:id="name" layoutX="174.0" layoutY="160.0" prefHeight="25.0" prefWidth="250.0" promptText="Nom du client" />
+        <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="139.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../Dropbox/PC/Downloads/icons8-customer-32.png" />
+         </image>
+        </ImageView>
+        <TextField fx:id="phone" layoutX="176.0" layoutY="235.0" prefHeight="25.0" prefWidth="250.0" promptText="CIN" />
+        <TextField fx:id="gender" layoutX="176.0" layoutY="310.0" prefHeight="25.0" prefWidth="250.0" promptText="Ville du client " />
+        <TextField fx:id="email" layoutX="174.0" layoutY="384.0" prefHeight="25.0" prefWidth="250.0" promptText="Num télephone du client" />
+        <TextField fx:id="nationality" layoutX="176.0" layoutY="460.0" prefHeight="25.0" prefWidth="250.0" promptText="Email du client" />
+        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="140.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../../../../../Dropbox/PC/Desktop/OIP%20(1).jpg" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="140.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../../../../../Dropbox/PC/Downloads/icons8-mail-24.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="137.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../Dropbox/PC/Desktop/identity.jpg" />
+         </image>
+        </ImageView>
+        <ImageView fitHeight="34.0" fitWidth="30.0" layoutX="137.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../../../../../Dropbox/PC/Downloads/icons8-numbers-input-form-24.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="98.0" layoutY="49.0" prefHeight="78.0" prefWidth="431.0" text="CUSTOMER INFORMATION" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="30.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

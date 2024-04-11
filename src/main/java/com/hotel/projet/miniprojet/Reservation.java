@@ -10,11 +10,12 @@ public class Reservation {
     private String nomClient;
     private Date dateArrive;
     private Date dateDepart;
+    private int nbLits;
     private int periode;
     private int prix;
     private String statut;
 
-    public Reservation(int resID, int numChambre, String nomClient, Date dateArrive, Date dateDepart, int periode, int prix, String statut) {
+    public Reservation(int resID, int numChambre, int nbLits, String nomClient, Date dateArrive, Date dateDepart, int periode, int prix, String statut) {
         this.resID = resID;
         this.numChambre = numChambre;
         this.nomClient = nomClient;
@@ -88,4 +89,13 @@ public class Reservation {
     public void setStatut(String statut) {
         this.statut = statut;
     }
+
+    public int getNbLits() {
+        return nbLits;
+    }
+
+    public void setNbLits(int nbLits) {
+        this.nbLits = nbLits;
+    }
+
 }

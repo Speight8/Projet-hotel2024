@@ -61,12 +61,12 @@ public class ReservationController implements Initializable {
     @FXML
     private TableColumn<Reservation, String> status;
 
+    public static final ObservableList<Reservation> reservations = FXCollections.observableArrayList();
+    public static final List<Reservation> reservationList = new ArrayList<>();
+
     public Connection connexion;
     public ConnexionBD connexionBD;
     public PreparedStatement pst;
-
-    public static final ObservableList<Reservation> reservations = FXCollections.observableArrayList();
-    public static final List<Reservation> reservationList = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -93,10 +93,9 @@ public class ReservationController implements Initializable {
             Date dateArriveValue = new Date();
             Date dateDepartValue = new Date();
 
-            Reservation newReservation = new Reservation(0, roomNumberValue, nomClientValue, dateArriveValue, dateDepartValue, 0, 0, "");
-
-            reservationList.add(newReservation);
-            reservations.add(newReservation);
+           // Reservation newReservation = new Reservation(0, roomNumberValue, nomClientValue, dateArriveValue, dateDepartValue, 0, 0, "");
+           // reservationList.add(newReservation);
+           // reservations.add(newReservation);
             reservationTable.setItems(reservations);
 
 
