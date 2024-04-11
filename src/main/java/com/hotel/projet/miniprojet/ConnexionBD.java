@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConnexionDB {
+public class ConnexionBD {
     Connection connection;
-    private String url = "jdbc:mysql://localhost:3307/hotel_management";
+    private String url = "jdbc:mysql://localhost:3307/hotel";
     private String username = "root";
     private String password = "";
     public Connection getConnection() {

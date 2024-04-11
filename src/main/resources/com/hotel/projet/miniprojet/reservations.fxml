@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="675.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.hotelmanagement.CheckOutController">
+   <children>
+      <AnchorPane layoutX="15.0" layoutY="8.0" prefHeight="85.0" prefWidth="690.0" style="-fx-background-color: #1B4B65;">
+         <children>
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/icons8-room-64.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="56.0" layoutY="25.0" text="Liste des réservations" textFill="#caebff">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="15.0" layoutY="95.0" prefHeight="570.0" prefWidth="690.0" style="-fx-background-color: #62B9CB;">
+         <children>
+            <TextField fx:id="recherche" layoutX="239.0" layoutY="24.0" onKeyReleased="#handleSearchKey" prefHeight="25.0" prefWidth="212.0" promptText="Type Room Number" />
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="204.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@res/icons8-search-32.png" />
+               </image>
+            </ImageView>
+            <TableView fx:id="reservationList" editable="true" layoutX="28.0" layoutY="74.0" onMouseClicked="#clickItem" prefHeight="470.0" prefWidth="634.0">
+               <columns>
+                  <TableColumn fx:id="roomNumber" minWidth="95.0" prefWidth="122.4000244140625" text="Numéro de chambre" />
+                  <TableColumn fx:id="nom_client" minWidth="4.0" prefWidth="84.79998779296875" text="Client" />
+                  <TableColumn fx:id="dateArrive" prefWidth="97.0" text="Arrivée" />
+                  <TableColumn fx:id="dateDepart" minWidth="0.0" prefWidth="92.0" text="Départ" />
+                  <TableColumn fx:id="duree" minWidth="7.0" prefWidth="73.0" text="Durée" />
+                  <TableColumn fx:id="prixTotal" prefWidth="83.0" text="Prix total" />
+                  <TableColumn fx:id="status" prefWidth="82.0" text="Statut" />
+               </columns>
+            </TableView>
+            <ComboBox fx:id="sort" layoutX="552.0" layoutY="24.0" onAction="#handleComboboxSelection" prefHeight="25.0" prefWidth="110.0" promptText="Filtrer" />
+            <Button fx:id="buttonCreerRes" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#creerRes" prefHeight="26.0" prefWidth="146.0" text="Créer une réservation" textAlignment="CENTER" textFill="#1b4b65" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="boutonRechercher" layoutX="464.0" layoutY="23.0" mnemonicParsing="false" text="Rechercher" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
