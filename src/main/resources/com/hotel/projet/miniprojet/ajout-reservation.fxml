@@ -29,15 +29,15 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="NbLits" layoutX="29.0" layoutY="100.0" onAction="#handleSelectRoomType" prefHeight="25.0" prefWidth="174.0" promptText="Choisir le nombre de lits" />
+            <ComboBox fx:id="nbLits" layoutX="29.0" layoutY="100.0" onAction="#gestionNbLits" prefHeight="25.0" prefWidth="174.0" promptText="Choisir le nombre de lits" />
             <Label layoutX="260.0" layoutY="72.0" text="Numéro chambre">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="numChambre" layoutX="256.0" layoutY="100.0" onAction="#handleSelectRoomNumber" prefHeight="25.0" prefWidth="174.0" promptText="Choisir num de chambre" />
-            <DatePicker fx:id="dateArrivee" layoutX="32.0" layoutY="201.0" onAction="#handleCheckInPick" promptText="Date de départ" />
-            <DatePicker fx:id="dateDepart" layoutX="261.0" layoutY="201.0" onAction="#handleCheckOutPick" promptText="Date d'arrivée" />
+            <ComboBox fx:id="numChambre" layoutX="256.0" layoutY="100.0" onAction="#gestionNumChambre" prefHeight="25.0" prefWidth="174.0" promptText="Choisir num de chambre" />
+            <DatePicker fx:id="dateArrivee" layoutX="32.0" layoutY="201.0" onAction="#gestionArrivee" promptText="Date de départ" />
+            <DatePicker fx:id="dateDepart" layoutX="261.0" layoutY="201.0" onAction="#gestionDepart" promptText="Date d'arrivée" />
             <Label layoutX="32.0" layoutY="167.0" text="Date d'arrivée">
                <font>
                   <Font size="14.0" />

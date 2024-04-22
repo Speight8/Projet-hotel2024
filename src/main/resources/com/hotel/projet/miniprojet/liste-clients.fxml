@@ -13,14 +13,14 @@
     <children>
         <VBox alignment="CENTER" layoutY="-5.0" prefHeight="411.0" prefWidth="600.0" spacing="20" style="-fx-background-color: #BEE9E7;">
             <Label style="-fx-font-size: 24px; -fx-text-fill: #1B4B65;" text="Liste des Clients" />
-            <TableView prefHeight="226.0" prefWidth="390.0">
+            <TableView fx:id="listeClients" prefHeight="226.0" prefWidth="390.0">
             <columns>
-               <TableColumn prefWidth="565.5999755859375" text="Nom Client" />
+               <TableColumn fx:id="nomClient" prefWidth="565.5999755859375" text="Nom Client" />
             </columns></TableView>
             <HBox alignment="CENTER" spacing="20">
-                <Button fx:id="ajouter_client" onAction="#ajouterClient" style="-fx-background-color: #62B9CB; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Ajouter Client" />
-                <Button fx:id="modifier" onAction="#modifierClient" style="-fx-background-color: #62B9CB; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Modifier Client" />
-                <Button fx:id="supprimer" onAction="#supprimerClient" style="-fx-background-color: #62B9CB; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Supprimer Client" />
+                <Button fx:id="boutonAjouterClient" onAction="#gestionAjoutClient" style="-fx-background-color: #62B9CB; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Ajouter Client" />
+                <Button fx:id="boutonModifierClient" style="-fx-background-color: #62B9CB; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Modifier Client" />
+                <Button fx:id="boutonSupprimerClient" style="-fx-background-color: #62B9CB; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Supprimer Client" />
             </HBox>
         </VBox>
     </children>

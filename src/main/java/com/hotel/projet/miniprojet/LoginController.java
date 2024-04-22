@@ -37,8 +37,7 @@ public class LoginController implements Initializable {
     private Connection connexion;
     private PreparedStatement pst;
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle){
-        connexionbd = new ConnexionBD();
+    public void initialize(URL url, ResourceBundle resourceBundle){ connexionbd = new ConnexionBD();
     }
     @FXML
     void gestionLogin(ActionEvent event) throws SQLException {

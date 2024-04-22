@@ -8,7 +8,7 @@ module com.hotel.projet.miniprojet {
     requires javafx.base;
     requires javafx.swing;
     requires org.controlsfx.controls;
-    requires com.dlsc.formsfx;
+   // requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
