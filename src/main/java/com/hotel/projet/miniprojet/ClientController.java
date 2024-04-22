@@ -32,7 +32,8 @@ public class ClientController implements Initializable {
     private ConnexionBD connexionbd;
     private Connection connexion;
     private PreparedStatement pst;
-    private boolean confirmationAjout ;
+    public boolean confirmationAjout = false ;
+    public boolean confirmationModification = false ;
 
     public ClientController() {
     }
@@ -52,17 +53,27 @@ public class ClientController implements Initializable {
         String telephone = (phone.getText());
         Client client = new Client(cinClient, nom, nationalite, telephone, genre, emailClient);
 
-        ajouterClientBD(client);
+
         if (confirmationAjout) {
+            ajouterClientBD(client);
             ListeClientsController.clientList.add(client);
             ListeClientsController.observeClient.add(client);
+        } else if (confirmationModification) {
+            modifierClientBD(client);
         }
+
 
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
-
+    public void afficherClient(Client client){
+        name.setText(client.getNom());
+        cin.setText(String.valueOf(client.getCin()));
+        nationalité.setText(client.getNationalite());
+        gender.setText(client.getGenre());
+        email.setText(client.getEmail());
+        phone.setText(client.getNum_tel());
+    }
     public void ajouterClientBD(Client client) {
-        confirmationAjout = false;
         connexionbd = new ConnexionBD();
         Connection connexion = connexionbd.getConnection();
         String requeteSQL = "INSERT INTO client (cin_client, nom_client, nationalite_client, telephone_client, genre, adresse_email)  VALUES (?, ?, ?, ?, ?, ?)";
@@ -77,31 +88,33 @@ public class ClientController implements Initializable {
             pst.setString(5, client.getGenre());
             pst.setString(6, client.getEmail());
             pst.executeUpdate();
-            confirmationAjout = true;
+            confirmationAjout = false;
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-
     public void modifierClientBD(Client client) {
+
         connexionbd = new ConnexionBD();
         Connection connexion = connexionbd.getConnection();
-        String requeteSQL = "UPDATE client SET nom_client = ?, ville_client = ?, telephone_client = ?, adresse_email = ?" +
-                " WHERE cin_client = ?";
+        String requeteSQL = "UPDATE client SET cin_client = ?, nom_client = ?, nationalite_client = ?, telephone_client  = ?, genre = ?, adresse_email = ? WHERE cin_client = ?";
 
         try (
-                PreparedStatement preparedStatement = connexion.prepareStatement(requeteSQL)) {
-            preparedStatement.setString(1, client.getNom());
-            preparedStatement.setString(2, client.getNationalite());
-            preparedStatement.setString(3, client.getNum_tel());
-            preparedStatement.setString(4, client.getEmail());
-            preparedStatement.setLong(5, client.getCin());
-            preparedStatement.executeUpdate();
+                PreparedStatement pst = connexion.prepareStatement(requeteSQL)) {
+            pst.setLong(1, client.getCin());
+            pst.setString(2, client.getNom());
+            pst.setString(3, client.getNationalite());
+            pst.setString(4, client.getNum_tel());
+            pst.setString(5, client.getGenre());
+            pst.setString(6, client.getEmail());
+            pst.setLong(7, client.getCin());
+            pst.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        confirmationModification = false;
     }
+
 }

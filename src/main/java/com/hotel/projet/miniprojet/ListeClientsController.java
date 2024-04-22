@@ -41,12 +41,10 @@ public class ListeClientsController implements Initializable {
 
     public static final ObservableList<Client> observeClient = FXCollections.observableArrayList();
     public static final List<Client> clientList = new ArrayList<>();
+    public static boolean modification = false;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
-    //cette méthode initialise la connexion à la base de données, associe les propriétés des objets Room
-    // aux colonnes de la table roomTable, initialise la liste des chambres
-    // à partir de la base de données et lie cette liste à la table pour afficher les données.
     {
         connexionBD = new ConnexionBD();
         connexion = connexionBD.getConnection();
@@ -62,14 +60,20 @@ public class ListeClientsController implements Initializable {
     public void initremp() throws IOException {
         observeClient.clear();
         clientList.clear();
-        String query = "SELECT nom_client FROM client";
+        String query = "SELECT * FROM client";
         try {
             pst = connexion.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 String nom = rs.getString("nom_client");
-                clientList.add(new Client(nom));
-                observeClient.add(new Client(nom));
+                long cin = rs.getLong("cin_client");
+                String nationalite = rs.getString("nationalite_client");
+                String telephone = rs.getString("telephone_client");
+                String genre = rs.getString("genre");
+                String mail = rs.getString("adresse_email");
+                Client client = new Client(cin,nom,nationalite,telephone,genre,mail);
+                clientList.add(client);
+                observeClient.add(client);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -84,6 +88,24 @@ public class ListeClientsController implements Initializable {
         stage.setScene(new Scene(root));
         stage.showAndWait();
         }
+    @FXML
+    void gestionModifierClient(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("client.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+        Client clientModifie = listeClients.getSelectionModel().getSelectedItem();
+        ClientController modifController = loader.getController();
+        modifController.afficherClient(clientModifie);
+        modifController.confirmationModification = true;
+    }
+
+    @FXML
+    void gestionSupprimerClient(ActionEvent event) {
+        Client clientSupprime = listeClients.getSelectionModel().getSelectedItem();
+    }
     }
 
 

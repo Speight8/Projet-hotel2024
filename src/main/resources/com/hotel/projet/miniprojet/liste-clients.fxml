@@ -19,8 +19,8 @@
             </columns></TableView>
             <HBox alignment="CENTER" spacing="20">
                 <Button fx:id="boutonAjouterClient" onAction="#gestionAjoutClient" style="-fx-background-color: #62B9CB; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Ajouter Client" />
-                <Button fx:id="boutonModifierClient" style="-fx-background-color: #62B9CB; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Modifier Client" />
-                <Button fx:id="boutonSupprimerClient" style="-fx-background-color: #62B9CB; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Supprimer Client" />
+                <Button fx:id="boutonModifierClient" onAction="#gestionModifierClient" style="-fx-background-color: #62B9CB; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Modifier Client" />
+                <Button fx:id="boutonSupprimerClient" onAction="#gestionSupprimerClient" style="-fx-background-color: #62B9CB; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Supprimer Client" />
             </HBox>
         </VBox>
     </children>
