@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="675.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.hotelmanagement.CheckInController">
+<AnchorPane prefHeight="675.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.projet.miniprojet.AjoutReservationController">
    <children>
       <AnchorPane layoutX="15.0" layoutY="11.0" prefHeight="347.0" prefWidth="690.0" style="-fx-background-color: #BEE9E7;">
          <children>
@@ -35,7 +35,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="numChambre" layoutX="256.0" layoutY="100.0" onAction="#gestionNumChambre" prefHeight="25.0" prefWidth="174.0" promptText="Choisir num de chambre" />
+            <ComboBox fx:id="numChambre" layoutX="256.0" layoutY="100.0" onAction="#gestionPrixChambre" prefHeight="25.0" prefWidth="174.0" promptText="Choisir num de chambre" />
             <DatePicker fx:id="dateArrivee" layoutX="32.0" layoutY="201.0" onAction="#gestionArrivee" promptText="Date de départ" />
             <DatePicker fx:id="dateDepart" layoutX="261.0" layoutY="201.0" onAction="#gestionDepart" promptText="Date d'arrivée" />
             <Label layoutX="32.0" layoutY="167.0" text="Date d'arrivée">

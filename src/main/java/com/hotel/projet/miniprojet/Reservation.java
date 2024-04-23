@@ -8,24 +8,44 @@ public class Reservation {
     private int resID;
     private int numChambre;
     private String nomClient;
-    private Date dateArrive;
-    private Date dateDepart;
+    private String dateArrive;
+    private String dateDepart;
     private int nbLits;
-    private int periode;
-    private int prix;
+    private int duree;
+    private float prix;
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
+    private float total;
     private String statut;
 
-    public Reservation(int resID, int numChambre, int nbLits, String nomClient, Date dateArrive, Date dateDepart, int periode, int prix, String statut) {
+    public Reservation(int resID, int numChambre, int nbLits, String nomClient, String dateArrive, String dateDepart, int periode, float prix, float total, String statut) {
         this.resID = resID;
         this.numChambre = numChambre;
         this.nomClient = nomClient;
         this.dateArrive = dateArrive;
         this.dateDepart = dateDepart;
-        this.periode = periode;
+        this.duree = dateDepart.compareTo(dateArrive);
         this.prix = prix;
         this.statut = statut;
+        this.total = total;
     }
-
+    public Reservation(int resID, int numChambre, String nomClient, String dateArrive, String dateDepart, int periode, float total, String statut) {
+        this.resID = resID;
+        this.numChambre = numChambre;
+        this.nomClient = nomClient;
+        this.dateArrive = dateArrive;
+        this.dateDepart = dateDepart;
+        this.duree = periode;
+        this.statut = statut;
+        this.total = total;
+    }
     public int getResID() {
         return resID;
     }
@@ -50,31 +70,31 @@ public class Reservation {
         this.nomClient = nomClient;
     }
 
-    public Date getDateArrive() {
+    public String getDateArrive() {
         return dateArrive;
     }
 
     public void setDateArrive(Date dateArrive) {
-        this.dateArrive = dateArrive;
+        this.dateArrive = String.valueOf(dateArrive);
     }
 
-    public Date getDateDepart() {
+    public String getDateDepart() {
         return dateDepart;
     }
 
     public void setDateDepart(Date dateDepart) {
-        this.dateDepart = dateDepart;
+        this.dateDepart = String.valueOf(dateDepart);
     }
 
-    public int getPeriode() {
-        return periode;
+    public int getDuree() {
+        return duree;
     }
 
-    public void setPeriode(int periode) {
-        this.periode = periode;
+    public void setDuree(int periode) {
+        this.duree = periode;
     }
 
-    public int getPrix() {
+    public float getPrix() {
         return prix;
     }
 

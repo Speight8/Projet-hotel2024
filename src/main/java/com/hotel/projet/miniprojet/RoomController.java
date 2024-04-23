@@ -92,25 +92,21 @@ public class RoomController implements Initializable {
     }
     @FXML
     public void handleAddAction(ActionEvent event) {
-        // Récupérer les valeurs des champs de saisie
+
         int roomNumberValue = Integer.parseInt(roomNumber.getText());
         String statusValue = Status.getText();
         int numberOfBedsValue = Integer.parseInt(numberOfBeds.getText());
         String bathroomTypeValue = bathroomType.getText();
         String telephoneNumberValue = telephoneNumber.getText();
 
-        // Créer un nouvel objet Room
         Room newRoom = new Room(roomNumberValue, statusValue, numberOfBedsValue, bathroomTypeValue, telephoneNumberValue);
-
-        // Ajouter la nouvelle chambre à la liste roomList et à l'ObservableList rooms
         roomList.add(newRoom);
         rooms.add(newRoom);
 
-        // Mettre à jour la TableView roomTable
         roomTable.setItems(rooms);
         addRoomToDatabase(newRoom);
     }
-    private void addRoomToDatabase(Room room){ // pour ajouter les données à la base de données {
+    private void addRoomToDatabase(Room room){
         try {
         String query = "INSERT INTO rooms (roomNumber, status, numberOfBeds, bathroomType, telephoneNumber) VALUES (?, ?, ?, ?, ?)";
 

@@ -84,27 +84,35 @@ public class ListeClientsController implements Initializable {
     public void gestionAjoutClient(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("client.fxml"));
         Parent root = loader.load();
+        ClientController ajoutController = loader.getController();
+        ajoutController.confirmationAjout=true;
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.showAndWait();
-        }
+        stage.show();
+    }
     @FXML
     void gestionModifierClient(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("client.fxml"));
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.show();
+        stage.showAndWait();
 
         Client clientModifie = listeClients.getSelectionModel().getSelectedItem();
         ClientController modifController = loader.getController();
         modifController.afficherClient(clientModifie);
         modifController.confirmationModification = true;
+        initremp();
     }
 
     @FXML
-    void gestionSupprimerClient(ActionEvent event) {
+    void gestionSupprimerClient(ActionEvent event) throws IOException {
         Client clientSupprime = listeClients.getSelectionModel().getSelectedItem();
+        ClientController supprimerController = new ClientController();
+        supprimerController.supprimerClientBD(clientSupprime);
+
+        initremp();
+
     }
     }
 

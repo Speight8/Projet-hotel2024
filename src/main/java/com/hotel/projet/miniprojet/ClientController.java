@@ -116,5 +116,18 @@ public class ClientController implements Initializable {
         }
         confirmationModification = false;
     }
+    public void supprimerClientBD(Client client){
+        connexionbd = new ConnexionBD();
+        Connection connexion = connexionbd.getConnection();
+        String requeteSQL = "DELETE  FROM  client WHERE cin_client = ?";
+
+        try (PreparedStatement pst = connexion.prepareStatement(requeteSQL)) {
+            pst.setLong(1, client.getCin());
+            pst.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
