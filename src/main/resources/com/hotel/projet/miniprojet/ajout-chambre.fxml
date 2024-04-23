@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="450.0" style="-fx-background-color: #00334A;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.projet.miniprojet.AjoutChambreController">
+   <children>
+      <Label layoutX="64.0" layoutY="57.0" prefHeight="76.0" prefWidth="150.0" text="Ajouter" textFill="#007fa9">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <TextField fx:id="numChambre" layoutX="107.0" layoutY="209.0" prefHeight="25.0" prefWidth="250.0" promptText="Numéro de la chambre" />
+      <TextField fx:id="nbLits" layoutX="107.0" layoutY="256.0" prefHeight="25.0" prefWidth="250.0" promptText="Nombre de Lits" />
+      <TextField fx:id="prix" layoutX="107.0" layoutY="350.0" prefHeight="25.0" prefWidth="250.0" promptText="Prix" />
+      <Button fx:id="add" layoutX="149.0" layoutY="426.0" mnemonicParsing="false" onAction="#gestionAjoutChambre" prefHeight="46.0" prefWidth="136.0" style="-fx-background-color: #007FA9;" text="Ajouter " textFill="WHITE" />
+      <!--<ImageView fitHeight="24.0" fitWidth="24.0" layoutX="72.0" layoutY="301.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@res/icons8-bed-24.png" />
+         </image>
+      </ImageView>-->
+     <!-- <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="72.0" layoutY="401.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@res/icons8-expensive-price-24.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="72.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@res/icons8-numbers-input-form-24.png" />
+         </image>
+      </ImageView>-->
+      <Label layoutX="191.0" layoutY="73.0" text="Chambre" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <TextField fx:id="typeSdb" layoutX="107.0" layoutY="300.0" prefHeight="25.0" prefWidth="250.0" promptText="Type salle de bain" />
+   </children>
+</AnchorPane>

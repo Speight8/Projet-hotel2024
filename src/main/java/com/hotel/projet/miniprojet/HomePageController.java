@@ -85,7 +85,7 @@ public class HomePageController implements Initializable {
         if (clickedButton == dash1) {
             interfaceName = "reservations.fxml";
         } else if (clickedButton ==dash2) {
-            interfaceName = "room.fxml";
+            interfaceName = "chambre.fxml";
         } else if (clickedButton == dash3) {
             interfaceName = "PaiementInterface.fxml";
         } else if (clickedButton == dash4) {

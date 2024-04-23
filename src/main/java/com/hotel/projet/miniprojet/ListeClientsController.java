@@ -23,11 +23,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 public class ListeClientsController implements Initializable {
 
-    /*@FXML
-    private TableView<Client> listeClients;
-    @FXML
-    private TableColumn<Client, String> nomClient;
-        */
     @FXML
     private TableView<Client> listeClients;
 
@@ -39,9 +34,9 @@ public class ListeClientsController implements Initializable {
     private ConnexionBD connexionBD;
     private PreparedStatement pst;
 
+    public static int indiceClientModifie;
     public static final ObservableList<Client> observeClient = FXCollections.observableArrayList();
     public static final List<Client> clientList = new ArrayList<>();
-    public static boolean modification = false;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -94,15 +89,18 @@ public class ListeClientsController implements Initializable {
     void gestionModifierClient(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("client.fxml"));
         Parent root = loader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.showAndWait();
-
         Client clientModifie = listeClients.getSelectionModel().getSelectedItem();
+        indiceClientModifie = listeClients.getSelectionModel().getFocusedIndex();
         ClientController modifController = loader.getController();
         modifController.afficherClient(clientModifie);
         modifController.confirmationModification = true;
         initremp();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+
+
+
     }
 
     @FXML
@@ -110,7 +108,6 @@ public class ListeClientsController implements Initializable {
         Client clientSupprime = listeClients.getSelectionModel().getSelectedItem();
         ClientController supprimerController = new ClientController();
         supprimerController.supprimerClientBD(clientSupprime);
-
         initremp();
 
     }

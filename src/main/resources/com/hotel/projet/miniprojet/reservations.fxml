@@ -16,7 +16,7 @@
          <children>
           <!--  <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@res/icons8-room-64.png" />
+                  <Image url="@res/icons8-Chambre-64.png" />
                </image>
             </ImageView>-->
             <Label layoutX="56.0" layoutY="25.0" text="Liste des réservations" textFill="#caebff">
@@ -28,7 +28,7 @@
       </AnchorPane>
       <AnchorPane layoutX="15.0" layoutY="95.0" prefHeight="570.0" prefWidth="690.0" style="-fx-background-color: #62B9CB;">
          <children>
-            <TextField fx:id="recherche" layoutX="239.0" layoutY="24.0" prefHeight="25.0" prefWidth="212.0" promptText="Type Room Number" />
+            <TextField fx:id="recherche" layoutX="239.0" layoutY="24.0" prefHeight="25.0" prefWidth="212.0" promptText="Type Chambre Number" />
            <!-- <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="204.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@res/icons8-search-32.png" />

@@ -88,6 +88,8 @@ public class ClientController implements Initializable {
             pst.setString(5, client.getGenre());
             pst.setString(6, client.getEmail());
             pst.executeUpdate();
+            ListeClientsController.clientList.set(ListeClientsController.indiceClientModifie,client);
+            ListeClientsController.observeClient.set(ListeClientsController.indiceClientModifie,client);
             confirmationAjout = false;
 
         } catch (SQLException e) {
@@ -119,11 +121,15 @@ public class ClientController implements Initializable {
     public void supprimerClientBD(Client client){
         connexionbd = new ConnexionBD();
         Connection connexion = connexionbd.getConnection();
-        String requeteSQL = "DELETE  FROM  client WHERE cin_client = ?";
+        String requeteSQL = "DELETE FROM reservation WHERE cin_client = ?" ;
+                String requete ="DELETE  FROM  client WHERE cin_client = ?";
 
         try (PreparedStatement pst = connexion.prepareStatement(requeteSQL)) {
             pst.setLong(1, client.getCin());
             pst.executeUpdate();
+            PreparedStatement pst2 =connexion.prepareStatement((requete));
+            pst2.setLong(1, client.getCin());
+            pst2.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
