@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -13,10 +14,10 @@
 
     <children>
         <VBox alignment="CENTER" prefHeight="411.0" prefWidth="600.0" spacing="20" style="-fx-background-color: #BEE9E7;">
-            <Label style="-fx-font-size: 24px; -fx-text-fill: #1B4B65;" text="Liste des Clients" />
+            <Label style="-fx-font-size: 24px; -fx-text-fill: #1B4B65;" text="Liste des Clients" textAlignment="JUSTIFY" />
             <TableView fx:id="listeClients" prefHeight="226.0" prefWidth="390.0">
             <columns>
-               <TableColumn fx:id="nomClient" prefWidth="565.5999755859375" text="Nom Client :" />
+               <TableColumn fx:id="nomClient" prefWidth="599.1999939084053" text="Nom Client " />
             </columns></TableView>
             <HBox alignment="CENTER" spacing="20">
                 <Button fx:id="boutonAjouterClient" onAction="#gestionAjoutClient" style="-fx-background-color: #62B9CB; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Ajouter Client" />
@@ -27,5 +28,11 @@
       <ImageView fitHeight="25.0" fitWidth="28.0" layoutX="379.0" layoutY="-68.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="25.0" fitWidth="28.0" layoutX="101.0" layoutY="-93.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-71.0" layoutY="-162.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="49.0" fitWidth="28.0" layoutX="286.0" layoutY="-136.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView id="icon" fitHeight="49.0" fitWidth="52.0" layoutX="508.0" layoutY="28.0">
+         <image>
+            <Image url="@maison.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
