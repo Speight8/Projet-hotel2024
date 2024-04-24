@@ -6,6 +6,8 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #D3D3D3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.projet.miniprojet.HomePageController">
     <children>
         <AnchorPane layoutY="-1.0" prefHeight="125.0" prefWidth="1000.0" style="-fx-background-color: #1B4B65;">
@@ -45,11 +47,11 @@
         </AnchorPane>
         <AnchorPane fx:id="holdPane" layoutX="280.0" layoutY="124.0" prefHeight="675.0" prefWidth="720.0">
             <children>
-                <!-- <ImageView fitHeight="675.0" fitWidth="1007.0" layoutX="-284.0" layoutY="1.0" opacity="0.88">
+                 <ImageView fitHeight="675.0" fitWidth="1007.0" layoutX="-284.0" layoutY="1.0" opacity="0.88">
                     <image>
-                        <Image url="" />
+                        <Image url="@homepagebg.jpg" />
                     </image>
-                </ImageView> -->
+                </ImageView>
                 <AnchorPane layoutX="-117.0" layoutY="116.0" opacity="0.8" prefHeight="428.0" prefWidth="701.0" style="-fx-background-color: #ffffff;">
                     <children>
                         <Button fx:id="dash2" alignment="BASELINE_LEFT" layoutX="396.0" layoutY="230.0" mnemonicParsing="false" onAction="#redirectToInterface" prefHeight="80.0" prefWidth="228.0" style="-fx-background-color: #BEE9E7;" text="Gestion Des Chambres" textAlignment="CENTER">
