@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="450.0" style="-fx-background-color: #00334A;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.projet.miniprojet.AjoutChambreController">
    <children>
-      <Label layoutX="64.0" layoutY="57.0" prefHeight="76.0" prefWidth="150.0" text="Ajouter" textFill="#007fa9">
+      <Label layoutX="91.0" layoutY="72.0" prefHeight="76.0" prefWidth="150.0" text="Ajouter" textFill="#007fa9">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
@@ -32,7 +32,7 @@
             <Image url="@res/icons8-numbers-input-form-24.png" />
          </image>
       </ImageView>-->
-      <Label layoutX="191.0" layoutY="73.0" text="Chambre" textFill="WHITE">
+      <Label layoutX="214.0" layoutY="87.0" text="Chambre" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
