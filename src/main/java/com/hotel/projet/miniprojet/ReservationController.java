@@ -110,6 +110,12 @@ public class ReservationController implements Initializable {
         stage.showAndWait();
 
         }
+    @FXML
+    void RetourHomePage(MouseEvent event) {
+        NavigationUtils.retourHomePage(event);
+    }
+
+
 
 
 
