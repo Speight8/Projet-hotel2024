@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
@@ -12,16 +14,9 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="615.0" style="-fx-background-color: #1B4B65;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.projet.miniprojet.LoginController">
-        <TextField fx:id="username" layoutX="143.0" layoutY="261.0" prefHeight="25.0" prefWidth="329.0" promptText="Nom" />
-        <PasswordField fx:id="password" layoutX="143.0" layoutY="340.0" prefHeight="25.0" prefWidth="329.0" promptText="Mot de âsse" />
-        <Button fx:id="login" layoutX="220.0" layoutY="415.0" mnemonicParsing="false" onAction="#gestionLogin" prefHeight="43.0" prefWidth="154.0" style="-fx-background-color: #62B9CB;" text="Se connecter" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="14.0" />
-            </font>
-        </Button>
-   <Rectangle arcHeight="5.0" arcWidth="5.0" height="227.0" layoutX="-2.0" stroke="#1b4b65" strokeType="INSIDE" width="622.0">
+   <Rectangle arcHeight="5.0" arcWidth="5.0" height="573.0" layoutX="-2.0" layoutY="-8.0" stroke="#1b4b65" strokeType="INSIDE" width="622.0">
       <fill>
-         <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="1.0" startX="1.0">
+         <LinearGradient cycleMethod="REFLECT" startX="1.0">
             <stops>
                <Stop>
                   <color>
@@ -38,29 +33,62 @@
                      <Color red="0.10639999806880951" green="0.2888000011444092" blue="0.3799999952316284" />
                   </color>
                </Stop>
-               <Stop offset="0.49337885303482915">
+               <Stop offset="0.14882972786659202">
                   <color>
                      <Color red="0.3871000111103058" green="0.7228500247001648" blue="0.7900000214576721" opacity="0.23000000417232513" />
                   </color>
                </Stop>
-               <Stop offset="0.7388963660834453">
+               <Stop offset="0.7415881561238222">
                   <color>
                      <Color red="0.3871000111103058" green="0.7228500247001648" blue="0.7900000214576721" opacity="0.23000000417232513" />
+                  </color>
+               </Stop>
+               <Stop offset="0.892328398384926">
+                  <color>
+                     <Color red="0.10530000180006027" green="0.29035499691963196" blue="0.38999998569488525" />
                   </color>
                </Stop>
                <Stop offset="1.0">
                   <color>
-                     <Color red="0.10588235408067703" green="0.29411765933036804" blue="0.3960784375667572" />
+                     <Color red="0.10360000282526016" green="0.28564000129699707" blue="0.3700000047683716" />
                   </color>
                </Stop>
             </stops>
          </LinearGradient>
       </fill>
    </Rectangle>
-   <Label layoutX="160.0" layoutY="111.0" prefHeight="83.0" prefWidth="316.0" text="Hilbert Hotel " textAlignment="CENTER">
+        <TextField fx:id="username" layoutX="143.0" layoutY="257.0" prefHeight="25.0" prefWidth="329.0" promptText="Nom d'utilisateur">
       <font>
-         <Font name="Franklin Gothic Medium" size="56.0" />
+         <Font size="18.0" />
+      </font></TextField>
+        <PasswordField fx:id="password" layoutX="143.0" layoutY="327.0" prefHeight="25.0" prefWidth="329.0" promptText="Mot de passe">
+      <font>
+         <Font size="18.0" />
+      </font></PasswordField>
+        <Button fx:id="login" layoutX="224.0" layoutY="404.0" mnemonicParsing="false" onAction="#gestionLogin" prefHeight="52.0" prefWidth="166.0" style="-fx-background-color: #62B9CB;" text="Se connecter" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Button>
+   <Label layoutX="115.0" layoutY="134.0" prefHeight="83.0" prefWidth="384.0" text="Hilbert Hotel " textAlignment="CENTER" textFill="#bee9e7">
+      <font>
+         <Font name="Berlin Sans FB" size="68.0" />
       </font>
    </Label>
+   <ImageView fitHeight="83.0" fitWidth="91.0" layoutX="251.0" layoutY="37.0">
+      <image>
+         <Image url="@hotel.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="98.0" layoutY="261.0">
+      <image>
+         <Image url="@user-login.png" />
+      </image>
+   </ImageView>
+   <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="98.0" layoutY="331.0">
+      <image>
+         <Image url="@padlock.png" />
+      </image>
+   </ImageView>
 
 </AnchorPane>

@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -110,6 +111,10 @@ public class ListeClientsController implements Initializable {
         supprimerController.supprimerClientBD(clientSupprime);
         initremp();
 
+    }
+    @FXML
+    void versHome(MouseEvent event) {
+        NavigationUtils.retourHomePage(event);
     }
     }
 

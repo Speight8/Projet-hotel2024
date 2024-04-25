@@ -204,5 +204,11 @@ public class AjoutReservationController implements Initializable {
         }
         prix.setText(Float.toString(valeurPrix));
     }
+    @FXML
+    void gestionAnnulation(ActionEvent event) {
+       // NavigationUtils.retourPageBouton(event, "ajout-reservation.fxml");
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+
+    }
 
 }

@@ -56,8 +56,8 @@ public class ClientController implements Initializable {
 
         if (confirmationAjout) {
             ajouterClientBD(client);
-            ListeClientsController.clientList.add(client);
-            ListeClientsController.observeClient.add(client);
+            //ListeClientsController.clientList.add(client);
+            //ListeClientsController.observeClient.add(client);
         } else if (confirmationModification) {
             modifierClientBD(client);
         }
@@ -88,8 +88,8 @@ public class ClientController implements Initializable {
             pst.setString(5, client.getGenre());
             pst.setString(6, client.getEmail());
             pst.executeUpdate();
-            ListeClientsController.clientList.set(ListeClientsController.indiceClientModifie,client);
-            ListeClientsController.observeClient.set(ListeClientsController.indiceClientModifie,client);
+            ListeClientsController.clientList.add(client);
+            ListeClientsController.observeClient.add(client);
             confirmationAjout = false;
 
         } catch (SQLException e) {
@@ -112,7 +112,8 @@ public class ClientController implements Initializable {
             pst.setString(6, client.getEmail());
             pst.setLong(7, client.getCin());
             pst.executeUpdate();
-
+            ListeClientsController.clientList.set(ListeClientsController.indiceClientModifie,client);
+            ListeClientsController.observeClient.set(ListeClientsController.indiceClientModifie,client);
         } catch (SQLException e) {
             e.printStackTrace();
         }

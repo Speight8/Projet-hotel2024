@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="634.0" style="-fx-background-color: #2D3347;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.projet.miniprojet.ClientController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="634.0" style="-fx-background-color: #1B4B65;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.projet.miniprojet.ClientController">
     <children>
         <TextField fx:id="name" layoutX="176.0" layoutY="134.0" prefHeight="25.0" prefWidth="250.0" promptText="Nom du client" AnchorPane.topAnchor="134.0" />
         <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="139.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../Dropbox/PC/Downloads/icons8-customer-32.png" />
+            <Image url="@user.png" />
          </image>
         </ImageView>
         <TextField fx:id="cin" layoutX="176.0" layoutY="202.0" prefHeight="25.0" prefWidth="250.0" promptText="CIN" />
@@ -22,34 +22,34 @@
         <TextField fx:id="email" layoutX="176.0" layoutY="435.0" prefHeight="25.0" prefWidth="250.0" promptText="Email du client" />
         <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="140.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../../../../../Dropbox/PC/Desktop/OIP%20(1).jpg" />
+                <Image url="@pin.png" />
             </image>
         </ImageView>
         <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="140.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../../../../../Dropbox/PC/Downloads/icons8-mail-24.png" />
+                <Image url="@email.png" />
             </image>
         </ImageView>
         <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="137.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../Dropbox/PC/Desktop/identity.jpg" />
+            <Image url="@id-card.png" />
          </image>
         </ImageView>
         <ImageView fitHeight="34.0" fitWidth="30.0" layoutX="137.0" layoutY="516.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../../../../../Dropbox/PC/Downloads/icons8-numbers-input-form-24.png" />
+                <Image url="@calling.png" />
             </image>
         </ImageView>
-        <Label layoutX="98.0" layoutY="36.0" prefHeight="78.0" prefWidth="431.0" text="INFORMATIONS DU CLIENT" textFill="WHITE">
+        <Label layoutX="98.0" layoutY="36.0" prefHeight="78.0" prefWidth="431.0" text="INFORMATIONS DU CLIENT" textFill="#c3d9e4">
             <font>
                 <Font name="System Bold" size="30.0" />
             </font>
         </Label>
       <Button fx:id="valider" defaultButton="true" layoutX="229.0" layoutY="592.0" mnemonicParsing="false" onAction="#Valider" prefHeight="30.0" prefWidth="143.0" text="Valider" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
       <TextField fx:id="phone" layoutX="176.0" layoutY="518.0" prefHeight="26.0" prefWidth="250.0" promptText="Num télephone du client" />
-      <ImageView fitHeight="22.0" fitWidth="24.0" layoutX="141.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="22.0" fitWidth="24.0" layoutX="140.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../Dropbox/PC/Desktop/gender.jpg" />
+            <Image url="@genders.png" />
          </image>
       </ImageView>
     </children>
