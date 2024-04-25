@@ -19,7 +19,7 @@
       <TextField fx:id="numChambre" layoutX="107.0" layoutY="209.0" prefHeight="25.0" prefWidth="250.0" promptText="Numéro de la chambre" />
       <TextField fx:id="nbLits" layoutX="107.0" layoutY="256.0" prefHeight="25.0" prefWidth="250.0" promptText="Nombre de Lits" />
       <TextField fx:id="prix" layoutX="107.0" layoutY="350.0" prefHeight="25.0" prefWidth="250.0" promptText="Prix" />
-      <Button fx:id="add" layoutX="160.0" layoutY="418.0" mnemonicParsing="false" onAction="#gestionAjoutChambre" prefHeight="46.0" prefWidth="136.0" style="-fx-background-color: #007FA9;" text="Ajouter " textFill="WHITE" />
+      <Button fx:id="add" layoutX="160.0" layoutY="418.0" mnemonicParsing="false" onAction="#valider" prefHeight="46.0" prefWidth="136.0" style="-fx-background-color: #007FA9;" text="Valider" textFill="WHITE" />
     <ImageView fitHeight="26.0" fitWidth="32.0" layoutX="74.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@bed.png" />
@@ -30,19 +30,16 @@
             <Image url="@number-one.png" />
          </image>
 
-      </ImageView>-->
+      </ImageView>
       <Label layoutX="214.0" layoutY="87.0" text="Chambre" textFill="WHITE">
->>>>>>> d1e80c385b6081601c36935a10c878b6143a9304
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
       <TextField fx:id="typeSdb" layoutX="107.0" layoutY="300.0" prefHeight="25.0" prefWidth="250.0" promptText="Type salle de bain" />
-      <ImageView fitHeight="26.0" fitWidth="32.0" layoutX="73.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@bathroom.png" />
-         </image>
-      </ImageView>
+       <ImageView fitHeight="26.0" fitWidth="32.0" layoutX="73.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
+           <Image url="@bathroom.png" />
+       </ImageView>
       <ImageView fitHeight="26.0" fitWidth="32.0" layoutX="73.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@dollar.png" />

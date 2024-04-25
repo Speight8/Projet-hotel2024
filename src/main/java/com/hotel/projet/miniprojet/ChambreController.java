@@ -1,4 +1,5 @@
 package com.hotel.projet.miniprojet;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 public class ChambreController implements Initializable {
+
     @FXML
     private TableView<Chambre> tableChambres;
     @FXML
@@ -33,17 +35,16 @@ public class ChambreController implements Initializable {
     @FXML
     private TableColumn<Chambre, Float> prix;
     @FXML
-    private TableColumn<Chambre, String> typeSdb;;
+    private TableColumn<Chambre, String> typeSdb;
+
     private Connection connexion;
     private ConnexionBD connexionBD;
     private PreparedStatement pst;
+
     public  static int indiceChambreModifie;
     public static final ObservableList<Chambre> observeChambre = FXCollections.observableArrayList();
     public static final List<Chambre> listeChambre = new ArrayList<>();
-    private ObservableList<Integer> observeFiltreChambre = FXCollections.observableArrayList();
-    private List<Integer> FiltreChambreList = new ArrayList<>();
-    @FXML
-    private ComboBox<Integer> Choix;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
 
@@ -86,64 +87,34 @@ public class ChambreController implements Initializable {
     }
 
 
-
     @FXML
     public void gestionAjoutChambre(ActionEvent actionEvent) throws IOException {
-        Stage add = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("ajout-chambre.fxml"));
-        Scene scene = new Scene(root);
-        add.setScene(scene);
-        add.show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ajout-chambre.fxml"));
+        Parent root = loader.load();
+        AjoutChambreController ajoutController = loader.getController();
+        ajoutController.confirmationAjout=true;
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
     @FXML
-    void vershome(MouseEvent event) {
+    void gestionModifierChambre(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ajout-chambre.fxml"));
+        Parent root = loader.load();
+        Chambre chambreModifie = tableChambres.getSelectionModel().getSelectedItem();
+        indiceChambreModifie = tableChambres.getSelectionModel().getFocusedIndex();
+        AjoutChambreController modifController = loader.getController();
+        modifController.afficherChambre(chambreModifie);
+        modifController.confirmationModification = true;
+        initListeChambre();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+    @FXML
+    void versHome(MouseEvent event) {
         NavigationUtils.retourHomePage(event);
     }
-
-    @FXML
-    void FiltrerChambre(ActionEvent event) throws IOException, SQLException  {
-        //ConnexionBD connexionBD1 ;
-        connexion =connexionBD.getConnection();
-        observeFiltreChambre.clear();
-    FiltreChambreList.clear();
-    try {
-        String requete = "SELECT num_chambre, COUNT(*) AS nombre_reservations FROM reservation GROUP BY num_chambre ORDER BY nombre_reservations DESC LIMIT 3";
-        pst = connexion.prepareStatement(requete);
-        ResultSet rs = pst.executeQuery();
-        int numChambre;
-        while (rs.next()) {
-            numChambre = rs.getInt("num_chambre");
-            FiltreChambreList.add(numChambre);
-            observeFiltreChambre.add(numChambre);
-        }
-        Choix.setItems(observeFiltreChambre);
-
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-    }
-    public void ChambreFiltre() throws IOException {
-        listeChambre.clear();
-        observeChambre.clear();
-        String query = "SELECT * FROM chambre";
-        try {
-            pst = connexion.prepareStatement(query);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                int numChambre1 =  Integer.parseInt(rs.getString("num_chambre"));
-                String etat1 = rs.getString("etat");
-                int nbLits1 = Integer.parseInt(rs.getString("nb_lits"));
-                String typeSdb1 = rs.getString("type_sdb");
-                float prix1 = Float.parseFloat(rs.getString("prix"));
-                Chambre chambre = new Chambre(numChambre1,nbLits1,typeSdb1,etat1,prix1);
-                listeChambre.add(chambre);
-                observeChambre.add(chambre);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    }
-
-
+}
