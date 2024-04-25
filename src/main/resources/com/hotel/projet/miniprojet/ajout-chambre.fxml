@@ -10,7 +10,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="450.0" style="-fx-background-color: #00334A;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.projet.miniprojet.AjoutChambreController">
    <children>
-      <Label layoutX="107.0" layoutY="75.0" prefHeight="76.0" prefWidth="150.0" text="Ajouter" textFill="#007fa9">
+
+      <Label layoutX="91.0" layoutY="72.0" prefHeight="76.0" prefWidth="150.0" text="Ajouter" textFill="#007fa9">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
@@ -28,8 +29,10 @@
          <image>
             <Image url="@number-one.png" />
          </image>
-      </ImageView>
-      <Label layoutX="225.0" layoutY="90.0" text="Chambre" textFill="WHITE">
+
+      </ImageView>-->
+      <Label layoutX="214.0" layoutY="87.0" text="Chambre" textFill="WHITE">
+>>>>>>> d1e80c385b6081601c36935a10c878b6143a9304
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
