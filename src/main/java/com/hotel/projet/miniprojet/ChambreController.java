@@ -41,6 +41,7 @@ public class ChambreController implements Initializable {
     private ConnexionBD connexionBD;
     private PreparedStatement pst;
 
+    public  static int indiceChambreModifie;
     public static final ObservableList<Chambre> observeChambre = FXCollections.observableArrayList();
     public static final List<Chambre> listeChambre = new ArrayList<>();
 
@@ -88,10 +89,32 @@ public class ChambreController implements Initializable {
 
     @FXML
     public void gestionAjoutChambre(ActionEvent actionEvent) throws IOException {
-        Stage add = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("ajout-chambre.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ajout-chambre.fxml"));
+        Parent root = loader.load();
+        AjoutChambreController ajoutController = loader.getController();
+        ajoutController.confirmationAjout=true;
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+    @FXML
+    void gestionModifierChambre(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ajout-chambre.fxml"));
+        Parent root = loader.load();
+        Chambre chambreModifie = tableChambres.getSelectionModel().getSelectedItem();
+        indiceChambreModifie = tableChambres.getSelectionModel().getFocusedIndex();
+        AjoutChambreController modifController = loader.getController();
+        modifController.afficherChambre(chambreModifie);
+        modifController.confirmationModification = true;
+        initListeChambre();
         Scene scene = new Scene(root);
-        add.setScene(scene);
-        add.show();
+        Stage stage = new Stage();
+
+        stage.setScene(scene);
+        stage.showAndWait();
+    }
+    @FXML
+    void versHome(MouseEvent event) {
+        NavigationUtils.retourHomePage(event);
     }
 }

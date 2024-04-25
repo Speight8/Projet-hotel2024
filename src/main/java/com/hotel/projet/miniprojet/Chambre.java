@@ -22,6 +22,13 @@ public class Chambre {
         this.etat = etat;
         this.prix = prix;
     }
+    public Chambre(int numChambre, int nbLits, String typeSdb, Float prix) {
+        this.numChambre = numChambre;
+        this.nbLits = nbLits;
+        this.typeSdb = typeSdb;
+        this.etat = etat;
+        this.prix = prix;
+    }
 
 
     public int getNumChambre() {
