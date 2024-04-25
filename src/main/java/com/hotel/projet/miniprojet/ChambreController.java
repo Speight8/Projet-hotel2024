@@ -1,5 +1,4 @@
 package com.hotel.projet.miniprojet;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 public class ChambreController implements Initializable {
-
     @FXML
     private TableView<Chambre> tableChambres;
     @FXML
@@ -35,15 +33,17 @@ public class ChambreController implements Initializable {
     @FXML
     private TableColumn<Chambre, Float> prix;
     @FXML
-    private TableColumn<Chambre, String> typeSdb;
-
+    private TableColumn<Chambre, String> typeSdb;;
     private Connection connexion;
     private ConnexionBD connexionBD;
     private PreparedStatement pst;
-
+    public  static int indiceChambreModifie;
     public static final ObservableList<Chambre> observeChambre = FXCollections.observableArrayList();
     public static final List<Chambre> listeChambre = new ArrayList<>();
-
+    private ObservableList<Integer> observeFiltreChambre = FXCollections.observableArrayList();
+    private List<Integer> FiltreChambreList = new ArrayList<>();
+    @FXML
+    private ComboBox<Integer> Choix;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
 
@@ -86,6 +86,7 @@ public class ChambreController implements Initializable {
     }
 
 
+
     @FXML
     public void gestionAjoutChambre(ActionEvent actionEvent) throws IOException {
         Stage add = new Stage();
@@ -94,4 +95,55 @@ public class ChambreController implements Initializable {
         add.setScene(scene);
         add.show();
     }
-}
+    @FXML
+    void vershome(MouseEvent event) {
+        NavigationUtils.retourHomePage(event);
+    }
+
+    @FXML
+    void FiltrerChambre(ActionEvent event) throws IOException, SQLException  {
+        //ConnexionBD connexionBD1 ;
+        connexion =connexionBD.getConnection();
+        observeFiltreChambre.clear();
+    FiltreChambreList.clear();
+    try {
+        String requete = "SELECT num_chambre, COUNT(*) AS nombre_reservations FROM reservation GROUP BY num_chambre ORDER BY nombre_reservations DESC LIMIT 3";
+        pst = connexion.prepareStatement(requete);
+        ResultSet rs = pst.executeQuery();
+        int numChambre;
+        while (rs.next()) {
+            numChambre = rs.getInt("num_chambre");
+            FiltreChambreList.add(numChambre);
+            observeFiltreChambre.add(numChambre);
+        }
+        Choix.setItems(observeFiltreChambre);
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    }
+    public void ChambreFiltre() throws IOException {
+        listeChambre.clear();
+        observeChambre.clear();
+        String query = "SELECT * FROM chambre";
+        try {
+            pst = connexion.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                int numChambre1 =  Integer.parseInt(rs.getString("num_chambre"));
+                String etat1 = rs.getString("etat");
+                int nbLits1 = Integer.parseInt(rs.getString("nb_lits"));
+                String typeSdb1 = rs.getString("type_sdb");
+                float prix1 = Float.parseFloat(rs.getString("prix"));
+                Chambre chambre = new Chambre(numChambre1,nbLits1,typeSdb1,etat1,prix1);
+                listeChambre.add(chambre);
+                observeChambre.add(chambre);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    }
+
+

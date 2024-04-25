@@ -30,7 +30,7 @@
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-71.0" layoutY="-162.0" pickOnBounds="true" preserveRatio="true" />
 
       <ImageView fitHeight="49.0" fitWidth="28.0" layoutX="286.0" layoutY="-136.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView id="icon" fitHeight="49.0" fitWidth="52.0" layoutX="508.0" layoutY="28.0">
+      <ImageView id="icon" fitHeight="49.0" fitWidth="52.0" layoutX="508.0" layoutY="28.0" onMouseClicked="#vershome">
          <image>
             <Image url="@maison.png" />
          </image>
