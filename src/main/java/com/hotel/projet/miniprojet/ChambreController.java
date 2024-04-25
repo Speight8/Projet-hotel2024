@@ -36,7 +36,8 @@ public class ChambreController implements Initializable {
     private TableColumn<Chambre, Float> prix;
     @FXML
     private TableColumn<Chambre, String> typeSdb;
-
+    @FXML
+    private ComboBox<?> Choix;
     private Connection connexion;
     private ConnexionBD connexionBD;
     private PreparedStatement pst;
@@ -116,5 +117,9 @@ public class ChambreController implements Initializable {
     @FXML
     void versHome(MouseEvent event) {
         NavigationUtils.retourHomePage(event);
+    }
+    @FXML
+    void ChoixFiltre(ActionEvent event) {
+
     }
 }
