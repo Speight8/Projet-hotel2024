@@ -92,17 +92,6 @@ public class ChambreController implements Initializable {
             }
         }
     }
-    public void initListeChambre()  throws IOException{
-        try{
-            pst = connexion.prepareStatement("SELECT * FROM chambre");
-            AfficherListeChambre(pst);}
-        catch (IOException | SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-
 
     @FXML
     public void gestionAjoutChambre(ActionEvent actionEvent) throws IOException {
@@ -133,6 +122,15 @@ public class ChambreController implements Initializable {
     @FXML
     void versHome(MouseEvent event) {
         NavigationUtils.retourHomePage(event);
+    }
+    public void initListeChambre()  throws IOException{
+        try{
+            pst = connexion.prepareStatement("SELECT * FROM chambre");
+            AfficherListeChambre(pst);}
+        catch (IOException | SQLException e) {
+            e.printStackTrace();
+        }
+
     }
     private ObservableList<Integer> numbersList = FXCollections.observableArrayList(1, 2, 3, 4);
     @FXML

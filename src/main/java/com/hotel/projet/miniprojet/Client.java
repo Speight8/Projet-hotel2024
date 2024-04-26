@@ -6,7 +6,7 @@ public class Client{
     private String email;
     private String num_tel;
     private String genre;
-    private String nationalité;
+    private String nationalite;
 
     public Client(String nom) {
         this.nom = nom;
@@ -17,7 +17,7 @@ public class Client{
         this.email = email;
         this.num_tel = num_tel;
         this.genre = genre;
-        this.nationalité = nationalité;
+        this.nationalite = nationalité;
     }
     public String getNom() {
         return nom;
@@ -40,7 +40,7 @@ public class Client{
     }
 
     public String getNationalite() {
-        return nationalité;
+        return nationalite;
     }
     public void setNom(String nom) {
         this.nom = nom;
@@ -63,7 +63,7 @@ public class Client{
     }
 
     public void setNationalité(String nationalité) {
-        this.nationalité = nationalité;
+        this.nationalite = nationalité;
     }
     @Override
     public String toString() {
@@ -73,7 +73,7 @@ public class Client{
                 ", email='" + email + '\'' +
                 ", num_tel='" + num_tel + '\'' +
                 ", genre='" + genre + '\'' +
-                ", nationalité='" + nationalité + '\'' +
+                ", nationalité='" + nationalite + '\'' +
                 '}';
     }
 }
