@@ -22,9 +22,6 @@ import java.util.ResourceBundle;
 public class HomePageController implements Initializable {
 
     @FXML
-    private Label adminName;
-
-    @FXML
     private Label adminName1;
 
     @FXML
@@ -51,7 +48,7 @@ public class HomePageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        adminName.setText(name);
+
     }
 
 

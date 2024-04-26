@@ -16,15 +16,20 @@
         <AnchorPane layoutX="21.0" layoutY="14.0" prefHeight="85.0" prefWidth="690.0" style="-fx-background-color: #BEE9E7;">
             <children>
 
-                <Label layoutX="61.0" layoutY="26.0" text="Gestion des chambres" textFill="#1B4B65">
+                <Label layoutX="78.0" layoutY="26.0" text="Gestion des chambres" textFill="#1B4B65">
                     <font>
                         <Font name="System Bold" size="28.0" />
                     </font>
                 </Label>
 
-            <ImageView fitHeight="49.0" fitWidth="42.0" layoutX="637.0" layoutY="6.0" onMouseClicked="#versHome" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="49.0" fitWidth="42.0" layoutX="634.0" layoutY="22.0" onMouseClicked="#versHome" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@maison.png" />
+                  <Image url="@home.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="49.0" layoutX="14.0" layoutY="19.0">
+               <image>
+                  <Image url="@bed2.png" />
                </image>
             </ImageView>
             </children>
