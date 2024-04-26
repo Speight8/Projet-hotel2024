@@ -42,6 +42,7 @@ public class ChambreController implements Initializable {
     private ConnexionBD connexionBD;
     private PreparedStatement pst;
 
+    private ObservableList<Integer> numbersList = FXCollections.observableArrayList(1, 2, 3, 4);
     public  static int indiceChambreModifie;
     public static final ObservableList<Chambre> observeChambre = FXCollections.observableArrayList();
     public static final List<Chambre> listeChambre = new ArrayList<>();
@@ -132,7 +133,6 @@ public class ChambreController implements Initializable {
         }
 
     }
-    private ObservableList<Integer> numbersList = FXCollections.observableArrayList(1, 2, 3, 4);
     @FXML
     void ChoixFiltre(ActionEvent event) {
         listeChambre.clear();

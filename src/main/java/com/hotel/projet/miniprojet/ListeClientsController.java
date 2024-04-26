@@ -42,7 +42,7 @@ public class ListeClientsController implements Initializable {
     @FXML
     private ComboBox<Integer> meilleurClient;
 
-
+    private ObservableList<Integer> listeNombres = FXCollections.observableArrayList(1, 2, 3, 4,5);
     private Connection connexion;
     private ConnexionBD connexionBD;
     private PreparedStatement pst;
@@ -68,6 +68,7 @@ public class ListeClientsController implements Initializable {
             e.printStackTrace();
         }
         listeClients.setItems(observeClient);
+        meilleurClient.setItems(listeNombres);
     }
 
 
@@ -94,9 +95,6 @@ public class ListeClientsController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.showAndWait();
-
-
-
     }
 
     @FXML
@@ -105,15 +103,15 @@ public class ListeClientsController implements Initializable {
         ClientController supprimerController = new ClientController();
         supprimerController.supprimerClientBD(clientSupprime);
         initremp();
-
     }
+
     @FXML
     void vershome(MouseEvent event) {
         NavigationUtils.retourHomePage(event);
     }
     public void initremp() throws IOException {
             try {
-                pst = connexion.prepareStatement("SELECT * FROM chambre");
+                pst = connexion.prepareStatement("SELECT * FROM client");
                 afficherListeClient(pst);
             } catch (IOException | SQLException e) {
                 e.printStackTrace();
@@ -152,7 +150,7 @@ public class ListeClientsController implements Initializable {
         clientList.clear();
         observeClient.clear();
         int numChoix = meilleurClient.getSelectionModel().getSelectedItem();
-        String requete = "SELECT c.* FROM client c\n  JOIN (\n SELECT cin_client, COUNT(*) AS nombre_reservations\n FROM reservation\n GROUP BY cin_client\n ORDER BY COUNT(*) DESC\n LIMIT ?)  ON c.cin_client = r.cin_client;\n;";
+        String requete = "SELECT c.* FROM client c\n  JOIN (\n SELECT cin_client, COUNT(*) AS nombre_reservations\n FROM reservation r\n GROUP BY cin_client\n ORDER BY COUNT(*) DESC\n LIMIT ?) r  ON c.cin_client = r.cin_client;";
         try {
             pst = connexion.prepareStatement(requete);
             pst.setInt(1, numChoix);
