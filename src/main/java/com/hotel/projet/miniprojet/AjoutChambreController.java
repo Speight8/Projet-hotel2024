@@ -1,10 +1,13 @@
 package com.hotel.projet.miniprojet;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -17,15 +20,14 @@ public class AjoutChambreController implements Initializable {
 
     @FXML
     private TextField nbLits;
-
     @FXML
     private TextField numChambre;
-
     @FXML
     private TextField prix;
-
     @FXML
     private TextField typeSdb;
+    @FXML
+    private ComboBox<String> boxEtat;
 
     public Connection connexion;
     public ConnexionBD connexionBD;
@@ -33,11 +35,14 @@ public class AjoutChambreController implements Initializable {
 
     public boolean confirmationAjout = false ;
     public boolean confirmationModification = false ;
+    private ObservableList<String> listeEtat = FXCollections.observableArrayList("Disponible", "Indisponible", "En rénovation","Autre");
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         connexionBD = new ConnexionBD();
         connexion = connexionBD.getConnection();
+        boxEtat.setItems(listeEtat);
     }
     @FXML
     void valider(ActionEvent event) {
@@ -45,7 +50,8 @@ public class AjoutChambreController implements Initializable {
         int nbLts = Integer.parseInt(nbLits.getText());
         String typesdb = typeSdb.getText();
         float prx = Float.parseFloat(prix.getText());
-        Chambre chambre = new Chambre(nChbre,nbLts,typesdb,prx);
+        String etat = boxEtat.getSelectionModel().getSelectedItem();
+        Chambre chambre = new Chambre(nChbre,nbLts,typesdb,etat,prx);
         if(confirmationAjout){
             ajoutChambreBD(chambre);
         } else if (confirmationModification) {
@@ -58,15 +64,19 @@ public class AjoutChambreController implements Initializable {
         nbLits.setText(String.valueOf(chambre.getNbLits()));
         typeSdb.setText(chambre.getTypeSdb());
         prix.setText(String.valueOf(chambre.getPrix()));
+        boxEtat.setValue(chambre.getEtat());
+
     }
     void ajoutChambreBD(Chambre chambre){
-        String query = "INSERT INTO chambre (num_chambre, nb_lits, type_sdb, prix) VALUES (?,?,?,?)";
+        String query = "INSERT INTO chambre (num_chambre, nb_lits, type_sdb, prix,etat) VALUES (?,?,?,?,?)";
         try {
             pst = connexion.prepareStatement(query);
+            String etat = boxEtat.getSelectionModel().getSelectedItem();
             pst.setInt(1, chambre.getNumChambre());
             pst.setInt(2, chambre.getNbLits());
             pst.setString(3, typeSdb.getText());
             pst.setFloat(4,chambre.getPrix());
+            pst.setString(5,etat);
             pst.executeUpdate();
             ChambreController.listeChambre.add(chambre);
             ChambreController.observeChambre.add(chambre);
@@ -80,7 +90,7 @@ public class AjoutChambreController implements Initializable {
     void modifierChambreBD(Chambre chambre){
         connexionBD = new ConnexionBD();
         Connection connexion = connexionBD.getConnection();
-        String requeteSQL = "UPDATE chambre SET num_chambre = ?, nb_lits = ?, type_sdb = ?, prix  = ? WHERE num_chambre = ?";
+        String requeteSQL = "UPDATE chambre SET num_chambre = ?, nb_lits = ?, type_sdb = ?, prix  = ?, etat = ? WHERE num_chambre = ?";
 
         try (
                 PreparedStatement pst = connexion.prepareStatement(requeteSQL)) {
@@ -89,6 +99,7 @@ public class AjoutChambreController implements Initializable {
             pst.setString(3, chambre.getTypeSdb());
             pst.setFloat(4, chambre.getPrix());
             pst.setInt(5, chambre.getNumChambre());
+            pst.setString(6,chambre.getEtat());
             pst.executeUpdate();
             ChambreController.listeChambre.set(ChambreController.indiceChambreModifie,chambre);
             ChambreController.observeChambre.set(ChambreController.indiceChambreModifie,chambre);
