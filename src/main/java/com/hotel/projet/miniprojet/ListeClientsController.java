@@ -29,6 +29,18 @@ public class ListeClientsController implements Initializable {
 
     @FXML
     private TableColumn<Client, String> nomClient;
+    @FXML
+    private TableColumn<Client, Integer> cinClient;
+    @FXML
+    private TableColumn<Client, String> nationClient;
+    @FXML
+    private TableColumn<Client, String> genreClient;
+    @FXML
+    private TableColumn<Client, String> emailClient;
+    @FXML
+    private TableColumn<Client, String> telClient;
+    @FXML
+    private ComboBox<Integer> meilleurClient;
 
 
     private Connection connexion;
@@ -45,6 +57,11 @@ public class ListeClientsController implements Initializable {
         connexionBD = new ConnexionBD();
         connexion = connexionBD.getConnection();
         nomClient.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        cinClient.setCellValueFactory(new PropertyValueFactory<>("cin"));
+        nationClient.setCellValueFactory(new PropertyValueFactory<>("nationalite"));
+        telClient.setCellValueFactory(new PropertyValueFactory<>("num_tel"));
+        genreClient.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        emailClient.setCellValueFactory(new PropertyValueFactory<>("email"));
         try {
             initremp();
         } catch (IOException e) {
@@ -53,28 +70,6 @@ public class ListeClientsController implements Initializable {
         listeClients.setItems(observeClient);
     }
 
-    public void initremp() throws IOException {
-        observeClient.clear();
-        clientList.clear();
-        String query = "SELECT * FROM client";
-        try {
-            pst = connexion.prepareStatement(query);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                String nom = rs.getString("nom_client");
-                long cin = rs.getLong("cin_client");
-                String nationalite = rs.getString("nationalite_client");
-                String telephone = rs.getString("telephone_client");
-                String genre = rs.getString("genre");
-                String mail = rs.getString("adresse_email");
-                Client client = new Client(cin,nom,nationalite,telephone,genre,mail);
-                clientList.add(client);
-                observeClient.add(client);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     public void gestionAjoutClient(ActionEvent event) throws IOException {
@@ -115,6 +110,60 @@ public class ListeClientsController implements Initializable {
     @FXML
     void vershome(MouseEvent event) {
         NavigationUtils.retourHomePage(event);
+    }
+    public void initremp() throws IOException {
+            try {
+                pst = connexion.prepareStatement("SELECT * FROM chambre");
+                afficherListeClient(pst);
+            } catch (IOException | SQLException e) {
+                e.printStackTrace();
+            }
+    }
+    void afficherListeClient(PreparedStatement pst)throws IOException {
+            clientList.clear();
+            observeClient.clear();
+            try {
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    String nom = rs.getString("nom_client");
+                    long cin = rs.getLong("cin_client");
+                    String nationalite = rs.getString("nationalite_client");
+                    String telephone = rs.getString("telephone_client");
+                    String genre = rs.getString("genre");
+                    String mail = rs.getString("adresse_email");
+                    Client client = new Client(cin, nom, nationalite, telephone, genre, mail);
+                    clientList.add(client);
+                    observeClient.add(client);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                if (pst != null) {
+                    try {
+                        pst.close();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+     }
+    @FXML
+    void ChoixMeilleur(ActionEvent event) {
+        clientList.clear();
+        observeClient.clear();
+        int numChoix = meilleurClient.getSelectionModel().getSelectedItem();
+        String requete = "SELECT c.* FROM client c\n  JOIN (\n SELECT cin_client, COUNT(*) AS nombre_reservations\n FROM reservation\n GROUP BY cin_client\n ORDER BY COUNT(*) DESC\n LIMIT ?)  ON c.cin_client = r.cin_client;\n;";
+        try {
+            pst = connexion.prepareStatement(requete);
+            pst.setInt(1, numChoix);
+            afficherListeClient(pst);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
     }
     }
 
