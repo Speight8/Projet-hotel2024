@@ -37,7 +37,7 @@ public class ChambreController implements Initializable {
     @FXML
     private TableColumn<Chambre, String> typeSdb;
     @FXML
-    private ComboBox<?> Choix;
+    private ComboBox<Integer> Choix;
     private Connection connexion;
     private ConnexionBD connexionBD;
     private PreparedStatement pst;
@@ -63,14 +63,12 @@ public class ChambreController implements Initializable {
             e.printStackTrace();
         }
         tableChambres.setItems(observeChambre);
+        Choix.setItems(numbersList);
     }
-
-    public void initListeChambre() throws IOException {
+    public void AfficherListeChambre(PreparedStatement pst) throws IOException {
         listeChambre.clear();
         observeChambre.clear();
-        String query = "SELECT * FROM chambre";
         try {
-            pst = connexion.prepareStatement(query);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 int numChambre1 =  Integer.parseInt(rs.getString("num_chambre"));
@@ -84,8 +82,26 @@ public class ChambreController implements Initializable {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
+    public void initListeChambre()  throws IOException{
+        try{
+            pst = connexion.prepareStatement("SELECT * FROM chambre");
+            AfficherListeChambre(pst);}
+        catch (IOException | SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
 
     @FXML
@@ -118,8 +134,25 @@ public class ChambreController implements Initializable {
     void versHome(MouseEvent event) {
         NavigationUtils.retourHomePage(event);
     }
+    private ObservableList<Integer> numbersList = FXCollections.observableArrayList(1, 2, 3, 4);
     @FXML
     void ChoixFiltre(ActionEvent event) {
+        listeChambre.clear();
+        observeChambre.clear();
+        int numChoix = Choix.getSelectionModel().getSelectedItem();
+        String requete = "SELECT * FROM chambre WHERE num_chambre IN (\n SELECT num_chambre FROM (\n SELECT num_chambre, COUNT(*) AS nombre_reservations \n FROM reservation \n  GROUP BY num_chambre \n  ORDER BY nombre_reservations DESC  \n LIMIT ? )AS subquery );";
+        try {
+            pst = connexion.prepareStatement(requete);
+            pst.setInt(1, numChoix);
+            AfficherListeChambre(pst);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+
 
     }
 }
