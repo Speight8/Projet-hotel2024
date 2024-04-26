@@ -8,19 +8,26 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.projet.miniprojet.ListeClientsController">
 
     <children>
       <AnchorPane layoutX="-6.0" prefHeight="86.0" prefWidth="609.0" style="-fx-background-color: #1B4B65;">
          <children>
-            <ImageView id="icon" fitHeight="49.0" fitWidth="52.0" layoutX="544.0" layoutY="11.0" onMouseClicked="#vershome">
+            <ImageView id="icon" fitHeight="39.0" fitWidth="41.0" layoutX="555.0" layoutY="11.0" onMouseClicked="#vershome">
                <image>
                   <Image url="@maison.png" />
                </image>
             </ImageView>
-            <Label layoutX="14.0" layoutY="9.0" prefHeight="35.0" prefWidth="64.0" style="-fx-font-size: 27px; -fx-text-fill: #62B9CB;" text="Liste" />
-               <Label layoutX="68.0" layoutY="12.0" style="-fx-font-size: 24px; -fx-text-fill: #FFFFFF;" text=" des Clients" textAlignment="JUSTIFY" />
+            <Label layoutX="66.0" layoutY="19.0" prefHeight="35.0" prefWidth="64.0" style="-fx-font-size: 27px; -fx-text-fill: #62B9CB;" text="Liste">
+               <font>
+                  <Font name="Berlin Sans FB" size="18.0" />
+               </font></Label>
+               <Label layoutX="120.0" layoutY="22.0" style="-fx-font-size: 24px; -fx-text-fill: #FFFFFF;" text=" des Clients" textAlignment="JUSTIFY">
+               <font>
+                  <Font name="Berlin Sans FB" size="18.0" />
+               </font></Label>
          </children>
       </AnchorPane>
       <AnchorPane layoutY="90.0" prefHeight="312.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;">
@@ -41,5 +48,10 @@
             <ComboBox fx:id="meilleurClient" layoutX="502.0" layoutY="19.0" onAction="#ChoixMeilleur" prefHeight="26.0" prefWidth="92.0" promptText="Meilleur" />
          </children>
       </AnchorPane>
+      <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="15.0" layoutY="17.0">
+         <image>
+            <Image url="@list.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
