@@ -118,7 +118,6 @@ public class ListeChambresController extends ListeController implements Initiali
     void versHome(MouseEvent event) {
         NavigationController.retourHomePage(event);
     }
-
     @FXML
     void ChoixFiltre(ActionEvent event) {
         listeChambre.clear();
@@ -127,4 +126,5 @@ public class ListeChambresController extends ListeController implements Initiali
         String requete = "SELECT * FROM chambre WHERE num_chambre IN (\n SELECT num_chambre FROM (\n SELECT num_chambre, COUNT(*) AS nombre_reservations \n FROM reservation \n  GROUP BY num_chambre \n  ORDER BY nombre_reservations DESC  \n LIMIT ? )AS subquery );";
         choisirMeilleur(requete,numChoix);
     }
+
 }

@@ -13,7 +13,9 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import static java.lang.Integer.parseInt;
@@ -103,52 +105,73 @@ public  class AjoutReservationController extends AjoutController implements Init
 
     @FXML
     void gestionAjoutReservation(ActionEvent event) throws SQLException {
+        try {
+            String nom = nomClient.getText();
+            long cin = Long.parseLong(cinClient.getText());
+            String nationalite = nationaliteClient.getText();
+            String genre = genreClient.getText();
+            String email = emailClient.getText();
+            String telephone = numTelClient.getText();
+            String checkIn = dateArrivee.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            String checkOut = dateDepart.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            Integer nChbre = numChambre.getSelectionModel().getSelectedItem();
 
-        String nom = nomClient.getText();
-        long cin = Long.parseLong(cinClient.getText());
-        String nationalite = nationaliteClient.getText();
-        String genre = genreClient.getText();
-        String email = emailClient.getText();
-        String telephone = numTelClient.getText();
-        String checkIn = dateArrivee.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        String checkOut = dateDepart.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        Integer nChbre = numChambre.getSelectionModel().getSelectedItem();
+            // Vérification des champs obligatoires
+            if (nom.isEmpty() || nationalite.isEmpty() || genre.isEmpty() || email.isEmpty() || telephone.isEmpty() || checkIn.isEmpty() || checkOut.isEmpty() || nChbre == null) {
+                throw new IllegalArgumentException("Veuillez remplir tous les champs obligatoires.");
+            }
 
-        Client client = new Client(cin, nom, nationalite, telephone, genre, email);
+            // Vérification du format de l'email (optionnel)
+            if (!isValidEmail(email)) {
+                throw new IllegalArgumentException("Veuillez saisir une adresse e-mail valide.");
+            }
+            if (LocalDate.parse(checkOut).isBefore(LocalDate.parse(checkIn))) {
+                throw new IllegalArgumentException("La date de départ doit être postérieure à la date d'arrivée.");
+            }
 
-        String query = "SELECT * FROM client WHERE cin_client = ?";
-        pst = connexion.prepareStatement(query);
-        pst.setLong(1,client.getCin());
+            Client client = new Client(cin, nom, nationalite, telephone, genre, email);
 
-        ResultSet rs = pst.executeQuery();
-        Integer nbOccurencesClient =0;
-        while (rs.next()) {
-            nbOccurencesClient  +=1;
+            String query = "SELECT * FROM client WHERE cin_client = ?";
+            pst = connexion.prepareStatement(query);
+            pst.setLong(1, client.getCin());
+            ResultSet rs = pst.executeQuery();
+            Integer nbOccurencesClient = 0;
+            while (rs.next()) {
+                nbOccurencesClient++;
+            }
+            if (nbOccurencesClient == 0) {
+                AjoutClientController ajoutController = new AjoutClientController();
+                ajoutController.ajouterClientBD(client);
+            } else {
+                AjoutClientController modificationController = new AjoutClientController();
+                modificationController.modifierClientBD();
+            }
+
+            String insertReservation = "INSERT INTO reservation(cin_client,num_chambre, date_debut, date_fin) VALUES (?, ?, ?, ?)";
+            pst = connexion.prepareStatement(insertReservation);
+            pst.setLong(1, client.getCin());
+            pst.setInt(2, nChbre);
+            pst.setString(3, checkIn);
+            pst.setString(4, checkOut);
+            pst.executeUpdate();
+
+            String updateChambre = "UPDATE chambre SET etat='Indisponible' WHERE num_chambre=?";
+            pst = connexion.prepareStatement(updateChambre);
+            pst.setInt(1, nChbre);
+            pst.executeUpdate();
+
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (NumberFormatException e) {
+            NavigationController.messageErreur("Veuillez saisir un numéro de téléphone valide.", "Erreur de saisie");
+        } catch (IllegalArgumentException e) {
+            NavigationController.messageErreur(e.getMessage(), "Erreur de saisie");
         }
-        if(nbOccurencesClient==0){
-            AjoutClientController ajoutController = new AjoutClientController();
-            ajoutController.ajouterClientBD(client);
-        }
-        else{
-            AjoutClientController modificationController = new AjoutClientController();
-            modificationController.modifierClientBD();
-        }
-
-        String insertReservation = "INSERT INTO reservation(cin_client,num_chambre, date_debut, date_fin) VALUES (?, ?, ?, ?)";
-        pst = connexion.prepareStatement(insertReservation);
-        pst.setLong(1,client.getCin());
-        pst.setInt(2,nChbre);
-        pst.setString(3,checkIn);
-        pst.setString(4,checkOut);
-        pst.executeUpdate();
-
-        String updateChambre = "UPDATE chambre SET etat='indisponible' WHERE num_chambre=?";
-        pst = connexion.prepareStatement(updateChambre);
-        pst.setInt(1,nChbre);
-        pst.executeUpdate();
-
-        ((Node) (event.getSource())).getScene().getWindow().hide();
     }
+
+    boolean isValidEmail(String email) {
+        return email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
+    }
+
     @FXML
     void gestionArrivee(ActionEvent event) {
         String date = dateArrivee.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));

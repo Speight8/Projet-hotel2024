@@ -1,5 +1,4 @@
 package com.hotel.projet.miniprojet;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,8 +8,11 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import static com.hotel.projet.miniprojet.NavigationController.messageErreur;
 
 public  class AjoutClientController extends AjoutController implements Initializable {
     @FXML
@@ -33,25 +35,62 @@ public  class AjoutClientController extends AjoutController implements Initializ
 
     @FXML
     private void Valider(ActionEvent event) {
-        String nom = name.getText();
-        long cinClient = Long.parseLong(cin.getText());
-        String nationalite = nationalité.getText();
-        String genre = gender.getText();
-        String emailClient = email.getText();
-        String telephone = (phone.getText());
-        this.client = new Client(cinClient, nom, nationalite, telephone, genre, emailClient);
+        try {
+            String nom = name.getText();
+            long cinClient = Long.parseLong(cin.getText());
+            String nationalite = nationalité.getText();
+            String genre = gender.getText();
+            String emailClient = email.getText();
+            String telephone = phone.getText();
 
-        if (confirmationAjout) {
-            ajouterClientBD(client);
-            //ListeClientsController.clientList.add(client);
-            //ListeClientsController.observeClient.add(client);
-        } else if (confirmationModification) {
-            modifierClientBD();
+            // Vérification des champs obligatoires
+            if (nom.isEmpty() || nationalite.isEmpty() || genre.isEmpty() || emailClient.isEmpty() || telephone.isEmpty()) {
+                throw new IllegalArgumentException("Veuillez remplir tous les champs obligatoires.");
+            }
+            if (!isValidCin(cinClient)) {
+                throw new IllegalArgumentException("Le client avec ce CIN existe déjà");
+            }
+            if (!isValidEmail(emailClient)) {
+                throw new IllegalArgumentException("Veuillez saisir une adresse e-mail valide.");
+            }
+            if (!isValidPhoneNumber(telephone)) {
+                throw new IllegalArgumentException("Veuillez saisir un numéro de téléphone valide.");
+            }
+
+            this.client = new Client(cinClient, nom, nationalite, telephone, genre, emailClient);
+
+            if (confirmationAjout) {
+                ajouterClientBD(client);
+            } else if (confirmationModification) {
+                modifierClientBD();
+            }
+
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (NumberFormatException e) {
+            messageErreur("Veuillez saisir un numéro de téléphone valide.", "Erreur de saisie");
+        } catch (IllegalArgumentException | SQLException e) {
+            messageErreur(e.getMessage(), "Erreur de saisie");
         }
-
-
-        ((Node) (event.getSource())).getScene().getWindow().hide();
     }
+
+    boolean isValidEmail(String email) {
+        return email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
+    }
+    boolean isValidPhoneNumber(String phoneNumber) {
+        return phoneNumber.matches("\\d{10}");
+    }
+    boolean isValidCin(Long cin) throws SQLException {
+        String query = "SELECT * FROM client WHERE cin_client = ?";
+        pst = connexion.prepareStatement(query);
+        pst.setLong(1, cin);
+        ResultSet rs = pst.executeQuery();
+        Integer nbOccurencesClient = 0;
+        while (rs.next()) {
+            nbOccurencesClient++;
+        }
+        return (nbOccurencesClient==0);
+    }
+
 
     @Override
     public void afficherItem(){

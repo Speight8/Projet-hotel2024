@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
@@ -38,6 +39,9 @@ public class ListeReservationsController extends  ListeController implements Ini
     @FXML
     private TableColumn<Reservation, Float> prixTotal;
     @FXML
+    private TableColumn<Reservation, Integer> numRes;
+
+    @FXML
     private TextField recherche;
     @FXML
     private TableColumn<Reservation, Integer> numChambre;
@@ -53,6 +57,7 @@ public class ListeReservationsController extends  ListeController implements Ini
     public void initialize(URL url, ResourceBundle resourceBundle) {
         connexionBD = new ConnexionBD();
         connexion = connexionBD.getConnection();
+        numRes.setCellValueFactory(new PropertyValueFactory<>("resID"));
         dateArrive.setCellValueFactory(new PropertyValueFactory<>("dateArrive"));
         dateDepart.setCellValueFactory(new PropertyValueFactory<>("dateDepart"));
         duree.setCellValueFactory(new PropertyValueFactory<>("duree"));
@@ -99,7 +104,21 @@ public class ListeReservationsController extends  ListeController implements Ini
     @FXML
     void RetourHomePage(MouseEvent event) {NavigationController.retourHomePage(event);}
 
-
+    private void Rechercher(ObservableList<Reservation> reservationss, String s) {
+        reservationss.clear();
+        for (int i = 0; i < listeReservation.size(); i++) {
+            if (Integer.toString(listeReservation.get(i).getResID()).indexOf(s) == 0) {
+                reservationss.add(listeReservation.get(i));
+            }
+        }
+    }
+    @FXML
+    void gestionRecherche(KeyEvent event) {
+        if (event.getEventType() == KeyEvent.KEY_RELEASED) {
+            String s = recherche.getText();
+            Rechercher(observeReservations, s);
+        }
+    }
 
 
 

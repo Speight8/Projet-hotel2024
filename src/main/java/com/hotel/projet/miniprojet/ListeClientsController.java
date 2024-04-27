@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
@@ -17,6 +18,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import static com.hotel.projet.miniprojet.ListeReservationsController.observeReservations;
+
 public class ListeClientsController extends ListeController implements Initializable {
 
     @FXML
@@ -36,7 +40,7 @@ public class ListeClientsController extends ListeController implements Initializ
     @FXML
     private ComboBox<Integer> meilleurClient;
     @FXML
-    private Button BoutonRecherche;
+    private TextField recherche;
 
 
 
@@ -136,10 +140,23 @@ public class ListeClientsController extends ListeController implements Initializ
     void vershome(MouseEvent event) {
         NavigationController.retourHomePage(event);
     }
-    @FXML
-    void rechercheClient(ActionEvent event) {
 
+    private void Rechercher(ObservableList<Client> clients, String s) {
+        clients.clear();
+        for (int i = 0; i < clientList.size(); i++) {
+            if (Long.toString(clientList.get(i).getCin()).indexOf(s) == 0) {
+                clients.add(clientList.get(i));
+            }
+        }
     }
+    @FXML
+    void rechercheClient(KeyEvent event) {
+        if (event.getEventType() == KeyEvent.KEY_RELEASED) {
+            String s = recherche.getText();
+            Rechercher(observeClient, s);
+        }
+    }
+
 
 }
 

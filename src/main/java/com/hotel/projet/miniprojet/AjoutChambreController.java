@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -38,19 +39,43 @@ public  class AjoutChambreController extends AjoutController implements Initiali
     }
     @FXML
     void valider(ActionEvent event) {
-        int nChbre = Integer.parseInt(numChambre.getText());
-        int nbLts = Integer.parseInt(nbLits.getText());
-        String typesdb = typeSdb.getText();
-        float prx = Float.parseFloat(prix.getText());
-        String etat = boxEtat.getSelectionModel().getSelectedItem();
-        this.chambre = new Chambre(nChbre,nbLts,typesdb,etat,prx);
-        if(confirmationAjout){
-            ajoutChambreBD(this.chambre);
-        } else if (confirmationModification) {
-            modifierChambreBD(this.chambre);
+        try {
+            int nChbre = Integer.parseInt(numChambre.getText());
+            int nbLts = Integer.parseInt(nbLits.getText());
+            String typesdb = typeSdb.getText();
+            float prx = Float.parseFloat(prix.getText());
+            String etat = boxEtat.getSelectionModel().getSelectedItem();
+
+            if (nChbre <= 0 || nbLts <= 0 || prx <= 0) {
+                throw new IllegalArgumentException("Les valeurs doivent être supérieures à zéro.");
+            }
+            if (chambreExisteDeja(nChbre)) {
+                throw new IllegalArgumentException("Ce numéro de chambre est déjà utilisé.");
+            }
+            this.chambre = new Chambre(nChbre, nbLts, typesdb, etat, prx);
+            if (confirmationAjout) {
+                ajoutChambreBD(this.chambre);
+            } else if (confirmationModification) {
+                modifierChambreBD(this.chambre);
+            }
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (NumberFormatException e) {
+            NavigationController.messageErreur("Veuillez saisir des nombres valides.", "Erreur de saisie");
+        } catch (IllegalArgumentException | SQLException e) {
+            NavigationController.messageErreur(e.getMessage(), "Erreur de saisie");
         }
-        ((Node) (event.getSource())).getScene().getWindow().hide();
     }
+
+    boolean chambreExisteDeja(int nChbre) throws SQLException {
+        String query = "SELECT * FROM client WHERE cin_client = ?";
+        ResultSet rs = pst.executeQuery(query);
+        Integer nbOccurences =0;
+        while (rs.next()) {
+            nbOccurences  +=1;
+        }
+        return (nbOccurences!=0);
+    }
+
     @Override
     public void afficherItem(){
         Chambre chambre = ListeChambresController.listeChambre.get(ListeChambresController.indiceItemModifie);

@@ -35,25 +35,30 @@
       </AnchorPane>
       <AnchorPane layoutX="15.0" layoutY="95.0" prefHeight="570.0" prefWidth="690.0" style="-fx-background-color: #4A919E;">
          <children>
-            <TextField fx:id="recherche" layoutX="239.0" layoutY="24.0" prefHeight="25.0" prefWidth="212.0" promptText="Type Chambre Number" />
+            <TextField fx:id="recherche" layoutX="239.0" layoutY="24.0" onKeyReleased="#gestionRecherche" prefHeight="25.0" prefWidth="212.0" promptText="Numéro de la Réservation" />
         
             <TableView fx:id="tableReservation" editable="true" layoutX="28.0" layoutY="74.0" prefHeight="470.0" prefWidth="634.0">
                <columns>
-                  <TableColumn fx:id="numChambre" minWidth="95.0" prefWidth="122.4000244140625" text="Numéro de chambre" />
-                  <TableColumn fx:id="nom_client" minWidth="4.0" prefWidth="84.79998779296875" text="Client" />
-                  <TableColumn fx:id="dateArrive" prefWidth="97.0" text="Arrivée" />
-                  <TableColumn fx:id="dateDepart" minWidth="0.0" prefWidth="92.0" text="Départ" />
-                  <TableColumn fx:id="duree" minWidth="7.0" prefWidth="73.0" text="Durée" />
-                  <TableColumn fx:id="prixTotal" prefWidth="83.0" text="Prix total" />
-                  <TableColumn fx:id="status" prefWidth="82.0" text="Statut" />
+                  <TableColumn fx:id="numRes" prefWidth="127.20001220703125" text="Num Réservation" />
+                  <TableColumn fx:id="numChambre" minWidth="95.0" prefWidth="109.5999755859375" text="Num Chambre" />
+                  <TableColumn fx:id="nom_client" minWidth="4.0" prefWidth="57.5999755859375" text="Client" />
+                  <TableColumn fx:id="dateArrive" prefWidth="90.39996337890625" text="Arrivée" />
+                  <TableColumn fx:id="dateDepart" minWidth="0.0" prefWidth="68.0" text="Départ" />
+                  <TableColumn fx:id="duree" minWidth="7.0" prefWidth="55.199951171875" text="Durée" />
+                  <TableColumn fx:id="prixTotal" prefWidth="69.60003662109375" text="Prix total" />
+                  <TableColumn fx:id="status" prefWidth="59.20001220703125" text="Statut" />
                </columns>
             </TableView>
-            <ComboBox fx:id="sort" layoutX="552.0" layoutY="24.0" prefHeight="25.0" prefWidth="110.0" promptText="Filtrer" />
+            <ComboBox fx:id="sort" layoutX="532.0" layoutY="23.0" prefHeight="25.0" prefWidth="110.0" promptText="Filtrer" />
             <Button fx:id="buttonCreerRes" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#creerRes" prefHeight="26.0" prefWidth="146.0" text="Créer une réservation" textAlignment="CENTER" textFill="#1b4b65" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button fx:id="boutonRechercher" layoutX="464.0" layoutY="23.0" mnemonicParsing="false" text="Rechercher" />
+            <ImageView layoutX="203.0" layoutY="20.0">
+               <image>
+                  <Image url="@loupe.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>
