@@ -81,7 +81,6 @@ public class ListeReservationsController implements Initializable {
     public void initListeReservation() throws IOException, SQLException {
         listeReservation.clear();
         observeReservations.clear();
-
         String requete = "SELECT  res.num_reservation, res.num_chambre, c.nom_client, res.date_debut, res.date_fin, DATEDIFF(res.date_fin, res.date_debut) AS duree, (ch.prix * DATEDIFF(res.date_fin, res.date_debut)) AS total, ch.etat FROM client c\n INNER JOIN reservation res ON c.cin_client = res.cin_client\n INNER JOIN chambre ch ON ch.num_chambre = res.num_chambre\n";
         pst = connexion.prepareStatement(requete);
         ResultSet rs = pst.executeQuery();
