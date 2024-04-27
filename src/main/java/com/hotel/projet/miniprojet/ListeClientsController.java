@@ -107,7 +107,7 @@ public class ListeClientsController implements Initializable {
 
     @FXML
     void vershome(MouseEvent event) {
-        NavigationUtils.retourHomePage(event);
+        NavigationController.retourHomePage(event);
     }
     public void initremp() throws IOException {
             try {
@@ -146,7 +146,7 @@ public class ListeClientsController implements Initializable {
             }
      }
     @FXML
-    void ChoixMeilleur(ActionEvent event) {
+    void choixMeilleur(ActionEvent event) {
         clientList.clear();
         observeClient.clear();
         int numChoix = meilleurClient.getSelectionModel().getSelectedItem();

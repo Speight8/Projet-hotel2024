@@ -9,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
@@ -21,11 +20,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ReservationController implements Initializable {
+public class ListeReservationsController implements Initializable {
 
     @FXML
     private Button boutonRechercher;
@@ -112,7 +110,7 @@ public class ReservationController implements Initializable {
         }
     @FXML
     void RetourHomePage(MouseEvent event) {
-        NavigationUtils.retourHomePage(event);
+        NavigationController.retourHomePage(event);
     }
 
 

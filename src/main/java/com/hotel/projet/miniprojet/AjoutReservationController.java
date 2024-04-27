@@ -105,7 +105,7 @@ public class AjoutReservationController implements Initializable {
 
         numChambre.getItems().removeAll(numChambre.getItems());
         Integer nbLitsValue = nbLits.getSelectionModel().getSelectedItem();
-        String query = "SELECT num_chambre FROM chambre WHERE nb_lits=? AND etat='disponible'";
+        String query = "SELECT num_chambre FROM chambre WHERE nb_lits=? AND etat='Disponible'";
         try {
             pst = connexion.prepareStatement(query);
             pst.setInt(1, nbLitsValue);

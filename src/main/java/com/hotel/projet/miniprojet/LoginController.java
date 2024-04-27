@@ -56,19 +56,12 @@ public class LoginController implements Initializable {
                 acceuil.setScene(scene);
                 acceuil.show();
             }
-            else OptionPane("Mot de passe ou nom invalide(s)","Oops");
+            else NavigationController.messageErreur("Mot de passe ou nom invalide(s)","Oops");
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
 
     }
-    private void OptionPane(String message, String title) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.initStyle(StageStyle.UTILITY);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
+
 
 }

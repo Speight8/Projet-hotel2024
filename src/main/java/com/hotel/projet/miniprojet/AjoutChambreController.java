@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
@@ -78,8 +77,8 @@ public class AjoutChambreController implements Initializable {
             pst.setFloat(4,chambre.getPrix());
             pst.setString(5,etat);
             pst.executeUpdate();
-            ChambreController.listeChambre.add(chambre);
-            ChambreController.observeChambre.add(chambre);
+            ListeChambresController.listeChambre.add(chambre);
+            ListeChambresController.observeChambre.add(chambre);
             confirmationAjout = false;
 
         } catch (SQLException e) {
@@ -101,8 +100,8 @@ public class AjoutChambreController implements Initializable {
             pst.setInt(5, chambre.getNumChambre());
             pst.setString(6,chambre.getEtat());
             pst.executeUpdate();
-            ChambreController.listeChambre.set(ChambreController.indiceChambreModifie,chambre);
-            ChambreController.observeChambre.set(ChambreController.indiceChambreModifie,chambre);
+            ListeChambresController.listeChambre.set(ListeChambresController.indiceChambreModifie,chambre);
+            ListeChambresController.observeChambre.set(ListeChambresController.indiceChambreModifie,chambre);
             confirmationModification = false;
 
         } catch (SQLException e) {

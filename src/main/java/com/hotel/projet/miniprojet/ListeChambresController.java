@@ -22,7 +22,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-public class ChambreController implements Initializable {
+public class ListeChambresController implements Initializable {
 
     @FXML
     private TableView<Chambre> tableChambres;
@@ -122,7 +122,7 @@ public class ChambreController implements Initializable {
     }
     @FXML
     void versHome(MouseEvent event) {
-        NavigationUtils.retourHomePage(event);
+        NavigationController.retourHomePage(event);
     }
     public void initListeChambre()  throws IOException{
         try{

@@ -80,7 +80,7 @@ public class HomePageController implements Initializable {
         String interfaceName = "";
 
         if (clickedButton == dash1) {
-            interfaceName = "reservations.fxml";
+            interfaceName = "liste-reservations.fxml";
         } else if (clickedButton ==dash2) {
             interfaceName = "chambre.fxml";
         } else if (clickedButton == dash3) {

@@ -45,7 +45,7 @@
                 <Button fx:id="boutonSupprimerClient" layoutX="141.0" layoutY="14.0" onAction="#gestionSupprimerClient" opacity="0.98" prefHeight="36.0" prefWidth="140.0" style="-fx-background-color: #1B4B65; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Supprimer Client" />
                 <Button fx:id="boutonAjouterClient" layoutX="14.0" layoutY="14.0" onAction="#gestionAjoutClient" style="-fx-background-color: #1B4B65; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Ajouter Client" />
                 <Button fx:id="boutonModifierClient" layoutX="291.0" layoutY="14.0" onAction="#gestionModifierClient" prefHeight="36.0" prefWidth="127.0" style="-fx-background-color: #1B4B65; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Modifier Client" />
-            <ComboBox fx:id="meilleurClient" layoutX="502.0" layoutY="19.0" onAction="#ChoixMeilleur" prefHeight="26.0" prefWidth="92.0" promptText="Meilleur" />
+            <ComboBox fx:id="meilleurClient" layoutX="502.0" layoutY="19.0" onAction="#choixMeilleur" prefHeight="26.0" prefWidth="92.0" promptText="Meilleur" />
          </children>
       </AnchorPane>
       <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="15.0" layoutY="17.0">

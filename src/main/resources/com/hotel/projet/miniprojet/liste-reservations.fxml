@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="675.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.projet.miniprojet.ReservationController">
+<AnchorPane prefHeight="675.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.projet.miniprojet.ListeReservationsController">
    <children>
       <AnchorPane layoutX="15.0" layoutY="8.0" prefHeight="85.0" prefWidth="690.0" style="-fx-background-color: #1B4B65;">
          <children>
