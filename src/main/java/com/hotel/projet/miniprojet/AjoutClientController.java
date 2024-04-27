@@ -25,7 +25,7 @@ public  class AjoutClientController extends AjoutController implements Initializ
     private TextField nationalité;
     @FXML
     private TextField phone;
-
+    Client client;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         connexionBD = new ConnexionBD();
@@ -39,8 +39,7 @@ public  class AjoutClientController extends AjoutController implements Initializ
         String genre = gender.getText();
         String emailClient = email.getText();
         String telephone = (phone.getText());
-        Client client = new Client(cinClient, nom, nationalite, telephone, genre, emailClient);
-
+        this.client = new Client(cinClient, nom, nationalite, telephone, genre, emailClient);
 
         if (confirmationAjout) {
             ajouterClientBD(client);
@@ -92,7 +91,7 @@ public  class AjoutClientController extends AjoutController implements Initializ
         connexionBD = new ConnexionBD();
         Connection connexion = connexionBD.getConnection();
         String requeteSQL = "UPDATE client SET cin_client = ?, nom_client = ?, nationalite_client = ?, telephone_client  = ?, genre = ?, adresse_email = ? WHERE cin_client = ?";
-        Client client = ListeClientsController.clientList.get(ListeClientsController.indiceItemModifie);
+        Client client = this.client;
         try (
                 PreparedStatement pst = connexion.prepareStatement(requeteSQL)) {
             pst.setLong(1, client.getCin());

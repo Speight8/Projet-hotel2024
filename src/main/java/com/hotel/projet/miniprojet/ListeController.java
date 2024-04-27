@@ -47,9 +47,9 @@ public abstract class ListeController {
             indiceItemModifie = tableItems.getSelectionModel().getFocusedIndex();
             FXMLLoader loader = new FXMLLoader(getClass().getResource(this.cheminFXML));
             Parent root = loader.load();
-            AjoutController modifController = loader.getController();
-            modifController.afficherItem();
+            AjoutController modifController = loader.getController(); //Polymprphisme
             modifController.confirmationModification = true;
+            modifController.afficherItem();
             afficherListe();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
