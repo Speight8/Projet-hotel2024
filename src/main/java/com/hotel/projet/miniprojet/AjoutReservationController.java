@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 
 import static java.lang.Integer.parseInt;
 
-public class AjoutReservationController extends AjoutController implements Initializable {
+public  class AjoutReservationController extends AjoutController implements Initializable {
 
     @FXML
     private ComboBox<Integer> nbLits;
@@ -40,34 +40,22 @@ public class AjoutReservationController extends AjoutController implements Initi
 
     @FXML
     private Label days;
-
     @FXML
     private Label duree;
-
     @FXML
     private TextField emailClient;
-
     @FXML
     private TextField genreClient;
-
     @FXML
     private TextField nationaliteClient;
-
     @FXML
     private TextField nomClient;
-
     @FXML
     private ComboBox<Integer> numChambre;
-
     @FXML
     private TextField numTelClient;
-
-    @FXML
-    private Label price;
-
     @FXML
     private Label prix;
-
     @FXML
     private Label total;
 
@@ -143,7 +131,7 @@ public class AjoutReservationController extends AjoutController implements Initi
         }
         else{
             AjoutClientController modificationController = new AjoutClientController();
-            modificationController.modifierClientBD(client);
+            modificationController.modifierClientBD();
         }
 
         String insertReservation = "INSERT INTO reservation(cin_client,num_chambre, date_debut, date_fin) VALUES (?, ?, ?, ?)";

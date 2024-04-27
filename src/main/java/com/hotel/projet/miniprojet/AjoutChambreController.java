@@ -15,7 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class AjoutChambreController extends AjoutController implements Initializable {
+public  class AjoutChambreController extends AjoutController implements Initializable {
 
     @FXML
     private TextField nbLits;
@@ -52,7 +52,9 @@ public class AjoutChambreController extends AjoutController implements Initializ
         }
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
-    void afficherChambre(Chambre chambre){
+    @Override
+    public void afficherItem(){
+        Chambre chambre = ListeChambresController.listeChambre.get(ListeChambresController.indiceItemModifie);
         numChambre.setText(String.valueOf(chambre.getNumChambre()));
         nbLits.setText(String.valueOf(chambre.getNbLits()));
         typeSdb.setText(chambre.getTypeSdb());

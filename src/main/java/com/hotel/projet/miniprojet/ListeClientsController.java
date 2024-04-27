@@ -4,18 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +21,6 @@ public class ListeClientsController extends ListeController implements Initializ
 
     @FXML
     private TableView<Client> listeClients;
-
     @FXML
     private TableColumn<Client, String> nomClient;
     @FXML
@@ -41,15 +35,18 @@ public class ListeClientsController extends ListeController implements Initializ
     private TableColumn<Client, String> telClient;
     @FXML
     private ComboBox<Integer> meilleurClient;
+    Class Integer;
+
 
     private ObservableList<Integer> listeNombres = FXCollections.observableArrayList(1, 2, 3, 4,5);
 
     public static final ObservableList<Client> observeClient = FXCollections.observableArrayList();
     public static final List<Client> clientList = new ArrayList<>();
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        this.cheminFXML = "client.fxml";
+        this.tableItems = listeClients;
         connexionBD = new ConnexionBD();
         connexion = connexionBD.getConnection();
         nomClient.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -59,7 +56,7 @@ public class ListeClientsController extends ListeController implements Initializ
         genreClient.setCellValueFactory(new PropertyValueFactory<>("genre"));
         emailClient.setCellValueFactory(new PropertyValueFactory<>("email"));
         try {
-            initremp();
+            afficherListe();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,27 +67,11 @@ public class ListeClientsController extends ListeController implements Initializ
 
     @FXML
     public void gestionAjoutClient(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("client.fxml"));
-        Parent root = loader.load();
-        AjoutClientController ajoutController = loader.getController();
-        ajoutController.confirmationAjout=true;
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        versAjout();
     }
     @FXML
-    void gestionModifierClient(ActionEvent event) throws IOException {
-        indiceItemModifie = listeClients.getSelectionModel().getFocusedIndex();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("client.fxml"));
-        Parent root = loader.load();
-        Client clientModifie = listeClients.getSelectionModel().getSelectedItem();
-        AjoutClientController modifController = loader.getController();
-        modifController.afficherClient(clientModifie);
-        modifController.confirmationModification = true;
-        initremp();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.showAndWait();
+    void gestionModifierClient(ActionEvent event) throws IOException, SQLException {
+        versModification();
     }
 
     @FXML
@@ -98,22 +79,21 @@ public class ListeClientsController extends ListeController implements Initializ
         Client clientSupprime = listeClients.getSelectionModel().getSelectedItem();
         AjoutClientController supprimerController = new AjoutClientController();
         supprimerController.supprimerClientBD(clientSupprime);
-        initremp();
+        afficherListe();
     }
 
-    @FXML
-    void vershome(MouseEvent event) {
-        NavigationController.retourHomePage(event);
-    }
-    public void initremp() throws IOException {
+
+    @Override
+    public void afficherListe() throws IOException {
             try {
                 pst = connexion.prepareStatement("SELECT * FROM client");
-                afficherListeClient(pst);
+                afficherListe(pst);
             } catch (IOException | SQLException e) {
                 e.printStackTrace();
             }
     }
-    void afficherListeClient(PreparedStatement pst)throws IOException {
+    @Override
+    public void afficherListe(PreparedStatement pst)throws IOException {
             clientList.clear();
             observeClient.clear();
             try {
@@ -147,28 +127,14 @@ public class ListeClientsController extends ListeController implements Initializ
         observeClient.clear();
         int numChoix = meilleurClient.getSelectionModel().getSelectedItem();
         String requete = "SELECT c.* FROM client c\n  JOIN (\n SELECT cin_client, COUNT(*) AS nombre_reservations\n FROM reservation r\n GROUP BY cin_client\n ORDER BY COUNT(*) DESC\n LIMIT ?) r  ON c.cin_client = r.cin_client;";
-        try {
-            pst = connexion.prepareStatement(requete);
-            pst.setInt(1, numChoix);
-            afficherListeClient(pst);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
+        choisirMeilleur(requete,numChoix);
 
     }
-
-    @Override
-    public void afficherListe() throws IOException, SQLException {
-
+    @FXML
+    void vershome(MouseEvent event) {
+        NavigationController.retourHomePage(event);
     }
 
-    @Override
-    public void afficherListe(PreparedStatement pst) throws IOException {
-
-    }
 }
 
 

@@ -12,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class AjoutClientController extends AjoutController implements Initializable {
+public  class AjoutClientController extends AjoutController implements Initializable {
     @FXML
     private TextField name;
     @FXML
@@ -47,13 +47,16 @@ public class AjoutClientController extends AjoutController implements Initializa
             //ListeClientsController.clientList.add(client);
             //ListeClientsController.observeClient.add(client);
         } else if (confirmationModification) {
-            modifierClientBD(client);
+            modifierClientBD();
         }
 
 
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
-    public void afficherClient(Client client){
+
+    @Override
+    public void afficherItem(){
+        Client client = ListeClientsController.clientList.get(ListeClientsController.indiceItemModifie);
         name.setText(client.getNom());
         cin.setText(String.valueOf(client.getCin()));
         nationalité.setText(client.getNationalite());
@@ -84,12 +87,12 @@ public class AjoutClientController extends AjoutController implements Initializa
             e.printStackTrace();
         }
     }
-    public void modifierClientBD(Client client) {
+    public void modifierClientBD() {
 
         connexionBD = new ConnexionBD();
         Connection connexion = connexionBD.getConnection();
         String requeteSQL = "UPDATE client SET cin_client = ?, nom_client = ?, nationalite_client = ?, telephone_client  = ?, genre = ?, adresse_email = ? WHERE cin_client = ?";
-
+        Client client = ListeClientsController.clientList.get(ListeClientsController.indiceItemModifie);
         try (
                 PreparedStatement pst = connexion.prepareStatement(requeteSQL)) {
             pst.setLong(1, client.getCin());
@@ -109,9 +112,9 @@ public class AjoutClientController extends AjoutController implements Initializa
     }
     public void supprimerClientBD(Client client){
         connexionBD = new ConnexionBD();
-        Connection connexion = connexionBD.getConnection();
+        connexion = connexionBD.getConnection();
         String requeteSQL = "DELETE FROM reservation WHERE cin_client = ?" ;
-                String requete ="DELETE  FROM  client WHERE cin_client = ?";
+        String requete ="DELETE  FROM  client WHERE cin_client = ?";
 
         try (PreparedStatement pst = connexion.prepareStatement(requeteSQL)) {
             pst.setLong(1, client.getCin());

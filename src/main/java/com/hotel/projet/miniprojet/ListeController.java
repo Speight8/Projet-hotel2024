@@ -17,15 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ListeController {
-    @FXML
-    private TableView<?> listeItems;
+
+    public TableView<?> tableItems;
     public Connection connexion;
     public ConnexionBD connexionBD;
     public PreparedStatement pst;
 
     String cheminFXML;
-    Object ajoutController;
-    Object modifierController;
+
 
     public static int indiceItemModifie;
     public static final ObservableList<Object> observeItems = FXCollections.observableArrayList();
@@ -44,8 +43,30 @@ public abstract class ListeController {
             stage.show();
         }
 
-        public void versModification () throws IOException {
-
+       public void versModification () throws IOException, SQLException {
+            indiceItemModifie = tableItems.getSelectionModel().getFocusedIndex();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(this.cheminFXML));
+            Parent root = loader.load();
+            AjoutController modifController = loader.getController();
+            modifController.afficherItem();
+            modifController.confirmationModification = true;
+            afficherListe();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
         }
 
+        public  void choisirMeilleur(String requete, int numChoix){
+            try {
+                pst = connexion.prepareStatement(requete);
+                pst.setInt(1, numChoix);
+                afficherListe(pst);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+
+        }
 }

@@ -46,16 +46,3 @@ public class NavigationController {
     }
 
     }
-   /* public static void redirectionAjout(String cheminFXML, boolean indiceConfirmation){
-        try {
-            FXMLLoader loader = new FXMLLoader(NavigationController.class.getResource(path));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
-
