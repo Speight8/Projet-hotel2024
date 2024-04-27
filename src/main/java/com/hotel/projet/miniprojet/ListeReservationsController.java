@@ -23,12 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ListeReservationsController implements Initializable {
+public class ListeReservationsController extends  ListeController implements Initializable {
 
-    @FXML
-    private Button boutonRechercher;
-    @FXML
-    private Button buttonCreerRes;
     @FXML
     private TableView<Reservation> tableReservation;
     @FXML
@@ -53,12 +49,8 @@ public class ListeReservationsController implements Initializable {
     public static final ObservableList<Reservation> observeReservations = FXCollections.observableArrayList();
     public static final List<Reservation> listeReservation = new ArrayList<>();
 
-    public Connection connexion;
-    public ConnexionBD connexionBD;
-    public PreparedStatement pst;
-
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle){
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         connexionBD = new ConnexionBD();
         connexion = connexionBD.getConnection();
         dateArrive.setCellValueFactory(new PropertyValueFactory<>("dateArrive"));
@@ -69,16 +61,14 @@ public class ListeReservationsController implements Initializable {
         numChambre.setCellValueFactory(new PropertyValueFactory<>("numChambre"));
         status.setCellValueFactory(new PropertyValueFactory<>("statut"));
         try {
-            initListeReservation();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            afficherListe();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         tableReservation.setItems(observeReservations);
     }
-
-    public void initListeReservation() throws IOException, SQLException {
+    @Override
+    public void afficherListe() throws SQLException {
         listeReservation.clear();
         observeReservations.clear();
         String requete = "SELECT  res.num_reservation, res.num_chambre, c.nom_client, res.date_debut, res.date_fin, DATEDIFF(res.date_fin, res.date_debut) AS duree, (ch.prix * DATEDIFF(res.date_fin, res.date_debut)) AS total, ch.etat FROM client c\n INNER JOIN reservation res ON c.cin_client = res.cin_client\n INNER JOIN chambre ch ON ch.num_chambre = res.num_chambre\n";
@@ -98,19 +88,16 @@ public class ListeReservationsController implements Initializable {
             observeReservations.add(reservation);
         }
     }
+
+    @Override
+    public void afficherListe(PreparedStatement pst) throws IOException {
+    }
+
     @FXML
     void creerRes(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ajout-reservation.fxml"));
-        Parent root = loader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.showAndWait();
-
-        }
+        NavigationController.retourPageBouton(event,"ajout-reservation.fxml");}
     @FXML
-    void RetourHomePage(MouseEvent event) {
-        NavigationController.retourHomePage(event);
-    }
+    void RetourHomePage(MouseEvent event) {NavigationController.retourHomePage(event);}
 
 
 

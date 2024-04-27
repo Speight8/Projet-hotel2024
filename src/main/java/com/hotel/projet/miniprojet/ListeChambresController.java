@@ -22,7 +22,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-public class ListeChambresController implements Initializable {
+public class ListeChambresController extends ListeController implements Initializable {
 
     @FXML
     private TableView<Chambre> tableChambres;
@@ -38,12 +38,8 @@ public class ListeChambresController implements Initializable {
     private TableColumn<Chambre, String> typeSdb;
     @FXML
     private ComboBox<Integer> Choix;
-    private Connection connexion;
-    private ConnexionBD connexionBD;
-    private PreparedStatement pst;
 
     private ObservableList<Integer> numbersList = FXCollections.observableArrayList(1, 2, 3, 4);
-    public  static int indiceChambreModifie;
     public static final ObservableList<Chambre> observeChambre = FXCollections.observableArrayList();
     public static final List<Chambre> listeChambre = new ArrayList<>();
 
@@ -51,6 +47,8 @@ public class ListeChambresController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle)
 
     {
+        this.cheminFXML = "ajout-chambre.fxml";
+        this.tableItems = tableChambres;
         connexionBD = new ConnexionBD();
         connexion = connexionBD.getConnection();
         numChambre.setCellValueFactory(new PropertyValueFactory<>("numChambre"));
@@ -59,14 +57,28 @@ public class ListeChambresController implements Initializable {
         typeSdb.setCellValueFactory(new PropertyValueFactory<>("typeSdb"));
         prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
         try {
-            initListeChambre();
+            afficherListe();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         tableChambres.setItems(observeChambre);
         Choix.setItems(numbersList);
     }
-    public void AfficherListeChambre(PreparedStatement pst) throws IOException {
+
+    @Override
+    public void afficherListe() throws IOException, SQLException {
+        try{
+            pst = connexion.prepareStatement("SELECT * FROM chambre");
+            afficherListe(pst);}
+        catch (IOException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void afficherListe(PreparedStatement pst) throws IOException{
         listeChambre.clear();
         observeChambre.clear();
         try {
@@ -96,61 +108,23 @@ public class ListeChambresController implements Initializable {
 
     @FXML
     public void gestionAjoutChambre(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ajout-chambre.fxml"));
-        Parent root = loader.load();
-        AjoutChambreController ajoutController = loader.getController();
-        ajoutController.confirmationAjout=true;
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        versAjout();
     }
     @FXML
-    void gestionModifierChambre(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ajout-chambre.fxml"));
-        Parent root = loader.load();
-        Chambre chambreModifie = tableChambres.getSelectionModel().getSelectedItem();
-        indiceChambreModifie = tableChambres.getSelectionModel().getFocusedIndex();
-        AjoutChambreController modifController = loader.getController();
-        modifController.afficherChambre(chambreModifie);
-        modifController.confirmationModification = true;
-        initListeChambre();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-
-        stage.setScene(scene);
-        stage.showAndWait();
+    void gestionModifierChambre(ActionEvent event) throws IOException, SQLException {
+        versModification();
     }
     @FXML
     void versHome(MouseEvent event) {
         NavigationController.retourHomePage(event);
     }
-    public void initListeChambre()  throws IOException{
-        try{
-            pst = connexion.prepareStatement("SELECT * FROM chambre");
-            AfficherListeChambre(pst);}
-        catch (IOException | SQLException e) {
-            e.printStackTrace();
-        }
 
-    }
     @FXML
     void ChoixFiltre(ActionEvent event) {
         listeChambre.clear();
         observeChambre.clear();
         int numChoix = Choix.getSelectionModel().getSelectedItem();
         String requete = "SELECT * FROM chambre WHERE num_chambre IN (\n SELECT num_chambre FROM (\n SELECT num_chambre, COUNT(*) AS nombre_reservations \n FROM reservation \n  GROUP BY num_chambre \n  ORDER BY nombre_reservations DESC  \n LIMIT ? )AS subquery );";
-        try {
-            pst = connexion.prepareStatement(requete);
-            pst.setInt(1, numChoix);
-            AfficherListeChambre(pst);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-
-
-
+        choisirMeilleur(requete,numChoix);
     }
 }

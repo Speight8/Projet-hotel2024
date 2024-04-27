@@ -1,6 +1,6 @@
 package com.hotel.projet.miniprojet;
 
-public class Client{
+public class Client {
     private String nom;
     private long cin;
     private String email;
