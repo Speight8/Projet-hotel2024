@@ -4,17 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-import javax.security.auth.callback.ConfirmationCallback;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class ClientController implements Initializable {
+public class AjoutClientController extends AjoutController implements Initializable {
     @FXML
     private TextField name;
     @FXML
@@ -27,20 +25,10 @@ public class ClientController implements Initializable {
     private TextField nationalité;
     @FXML
     private TextField phone;
-    @FXML
-    private Button valider;
-    private ConnexionBD connexionbd;
-    private Connection connexion;
-    private PreparedStatement pst;
-    public boolean confirmationAjout = false ;
-    public boolean confirmationModification = false ;
-
-    public ClientController() {
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        connexionbd = new ConnexionBD();
+        connexionBD = new ConnexionBD();
     }
 
     @FXML
@@ -74,8 +62,8 @@ public class ClientController implements Initializable {
         phone.setText(client.getNum_tel());
     }
     public void ajouterClientBD(Client client) {
-        connexionbd = new ConnexionBD();
-        Connection connexion = connexionbd.getConnection();
+        connexionBD = new ConnexionBD();
+        Connection connexion = connexionBD.getConnection();
         String requeteSQL = "INSERT INTO client (cin_client, nom_client, nationalite_client, telephone_client, genre, adresse_email)  VALUES (?, ?, ?, ?, ?, ?)";
 
         try (
@@ -98,8 +86,8 @@ public class ClientController implements Initializable {
     }
     public void modifierClientBD(Client client) {
 
-        connexionbd = new ConnexionBD();
-        Connection connexion = connexionbd.getConnection();
+        connexionBD = new ConnexionBD();
+        Connection connexion = connexionBD.getConnection();
         String requeteSQL = "UPDATE client SET cin_client = ?, nom_client = ?, nationalite_client = ?, telephone_client  = ?, genre = ?, adresse_email = ? WHERE cin_client = ?";
 
         try (
@@ -112,16 +100,16 @@ public class ClientController implements Initializable {
             pst.setString(6, client.getEmail());
             pst.setLong(7, client.getCin());
             pst.executeUpdate();
-            ListeClientsController.clientList.set(ListeClientsController.indiceClientModifie,client);
-            ListeClientsController.observeClient.set(ListeClientsController.indiceClientModifie,client);
+            ListeClientsController.clientList.set(ListeClientsController.indiceItemModifie,client);
+            ListeClientsController.observeClient.set(ListeClientsController.indiceItemModifie,client);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         confirmationModification = false;
     }
     public void supprimerClientBD(Client client){
-        connexionbd = new ConnexionBD();
-        Connection connexion = connexionbd.getConnection();
+        connexionBD = new ConnexionBD();
+        Connection connexion = connexionBD.getConnection();
         String requeteSQL = "DELETE FROM reservation WHERE cin_client = ?" ;
                 String requete ="DELETE  FROM  client WHERE cin_client = ?";
 

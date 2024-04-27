@@ -22,7 +22,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-public class ListeClientsController implements Initializable {
+public class ListeClientsController extends ListeController implements Initializable {
 
     @FXML
     private TableView<Client> listeClients;
@@ -43,11 +43,7 @@ public class ListeClientsController implements Initializable {
     private ComboBox<Integer> meilleurClient;
 
     private ObservableList<Integer> listeNombres = FXCollections.observableArrayList(1, 2, 3, 4,5);
-    private Connection connexion;
-    private ConnexionBD connexionBD;
-    private PreparedStatement pst;
 
-    public static int indiceClientModifie;
     public static final ObservableList<Client> observeClient = FXCollections.observableArrayList();
     public static final List<Client> clientList = new ArrayList<>();
 
@@ -76,7 +72,7 @@ public class ListeClientsController implements Initializable {
     public void gestionAjoutClient(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("client.fxml"));
         Parent root = loader.load();
-        ClientController ajoutController = loader.getController();
+        AjoutClientController ajoutController = loader.getController();
         ajoutController.confirmationAjout=true;
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -84,11 +80,11 @@ public class ListeClientsController implements Initializable {
     }
     @FXML
     void gestionModifierClient(ActionEvent event) throws IOException {
+        indiceItemModifie = listeClients.getSelectionModel().getFocusedIndex();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("client.fxml"));
         Parent root = loader.load();
         Client clientModifie = listeClients.getSelectionModel().getSelectedItem();
-        indiceClientModifie = listeClients.getSelectionModel().getFocusedIndex();
-        ClientController modifController = loader.getController();
+        AjoutClientController modifController = loader.getController();
         modifController.afficherClient(clientModifie);
         modifController.confirmationModification = true;
         initremp();
@@ -100,7 +96,7 @@ public class ListeClientsController implements Initializable {
     @FXML
     void gestionSupprimerClient(ActionEvent event) throws IOException {
         Client clientSupprime = listeClients.getSelectionModel().getSelectedItem();
-        ClientController supprimerController = new ClientController();
+        AjoutClientController supprimerController = new AjoutClientController();
         supprimerController.supprimerClientBD(clientSupprime);
         initremp();
     }
@@ -163,6 +159,16 @@ public class ListeClientsController implements Initializable {
         }
 
     }
+
+    @Override
+    public void afficherListe() throws IOException, SQLException {
+
     }
+
+    @Override
+    public void afficherListe(PreparedStatement pst) throws IOException {
+
+    }
+}
 
 

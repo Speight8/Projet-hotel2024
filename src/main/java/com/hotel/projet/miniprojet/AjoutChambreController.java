@@ -15,7 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class AjoutChambreController implements Initializable {
+public class AjoutChambreController extends AjoutController implements Initializable {
 
     @FXML
     private TextField nbLits;
@@ -28,12 +28,6 @@ public class AjoutChambreController implements Initializable {
     @FXML
     private ComboBox<String> boxEtat;
 
-    public Connection connexion;
-    public ConnexionBD connexionBD;
-    public PreparedStatement pst;
-
-    public boolean confirmationAjout = false ;
-    public boolean confirmationModification = false ;
     private ObservableList<String> listeEtat = FXCollections.observableArrayList("Disponible", "Indisponible", "En rénovation","Autre");
 
 
@@ -100,8 +94,8 @@ public class AjoutChambreController implements Initializable {
             pst.setInt(5, chambre.getNumChambre());
             pst.setString(6,chambre.getEtat());
             pst.executeUpdate();
-            ListeChambresController.listeChambre.set(ListeChambresController.indiceChambreModifie,chambre);
-            ListeChambresController.observeChambre.set(ListeChambresController.indiceChambreModifie,chambre);
+            ListeChambresController.listeChambre.set(ListeChambresController.indiceItemModifie,chambre);
+            ListeChambresController.observeChambre.set(ListeChambresController.indiceItemModifie,chambre);
             confirmationModification = false;
 
         } catch (SQLException e) {

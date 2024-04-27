@@ -1,6 +1,5 @@
 package com.hotel.projet.miniprojet;
 
-import com.hotel.projet.miniprojet.ConnexionBD;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,8 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +18,7 @@ import java.util.ResourceBundle;
 
 import static java.lang.Integer.parseInt;
 
-public class AjoutReservationController implements Initializable {
+public class AjoutReservationController extends AjoutController implements Initializable {
 
     @FXML
     private ComboBox<Integer> nbLits;
@@ -73,11 +70,6 @@ public class AjoutReservationController implements Initializable {
 
     @FXML
     private Label total;
-
-
-    public Connection connexion;
-    public ConnexionBD connexionBD;
-    public PreparedStatement pst;
 
 
     @Override
@@ -146,11 +138,11 @@ public class AjoutReservationController implements Initializable {
             nbOccurencesClient  +=1;
         }
         if(nbOccurencesClient==0){
-            ClientController ajoutController = new ClientController();
+            AjoutClientController ajoutController = new AjoutClientController();
             ajoutController.ajouterClientBD(client);
         }
         else{
-            ClientController modificationController = new ClientController();
+            AjoutClientController modificationController = new AjoutClientController();
             modificationController.modifierClientBD(client);
         }
 

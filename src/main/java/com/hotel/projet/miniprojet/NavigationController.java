@@ -44,6 +44,8 @@ public class NavigationController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    }
    /* public static void redirectionAjout(String cheminFXML, boolean indiceConfirmation){
         try {
             FXMLLoader loader = new FXMLLoader(NavigationController.class.getResource(path));
@@ -56,5 +58,4 @@ public class NavigationController {
             e.printStackTrace();
         }
     }*/
-}
 

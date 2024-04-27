@@ -22,7 +22,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-public class ListeChambresController implements Initializable {
+public class ListeChambresController extends ListeController implements Initializable {
 
     @FXML
     private TableView<Chambre> tableChambres;
@@ -38,12 +38,8 @@ public class ListeChambresController implements Initializable {
     private TableColumn<Chambre, String> typeSdb;
     @FXML
     private ComboBox<Integer> Choix;
-    private Connection connexion;
-    private ConnexionBD connexionBD;
-    private PreparedStatement pst;
 
     private ObservableList<Integer> numbersList = FXCollections.observableArrayList(1, 2, 3, 4);
-    public  static int indiceChambreModifie;
     public static final ObservableList<Chambre> observeChambre = FXCollections.observableArrayList();
     public static final List<Chambre> listeChambre = new ArrayList<>();
 
@@ -66,7 +62,14 @@ public class ListeChambresController implements Initializable {
         tableChambres.setItems(observeChambre);
         Choix.setItems(numbersList);
     }
-    public void AfficherListeChambre(PreparedStatement pst) throws IOException {
+
+    @Override
+    public void afficherListe() throws IOException, SQLException {
+
+    }
+
+    @Override
+    public void afficherListe(PreparedStatement pst) throws IOException{
         listeChambre.clear();
         observeChambre.clear();
         try {
@@ -109,7 +112,7 @@ public class ListeChambresController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ajout-chambre.fxml"));
         Parent root = loader.load();
         Chambre chambreModifie = tableChambres.getSelectionModel().getSelectedItem();
-        indiceChambreModifie = tableChambres.getSelectionModel().getFocusedIndex();
+        indiceItemModifie = tableChambres.getSelectionModel().getFocusedIndex();
         AjoutChambreController modifController = loader.getController();
         modifController.afficherChambre(chambreModifie);
         modifController.confirmationModification = true;
@@ -127,7 +130,7 @@ public class ListeChambresController implements Initializable {
     public void initListeChambre()  throws IOException{
         try{
             pst = connexion.prepareStatement("SELECT * FROM chambre");
-            AfficherListeChambre(pst);}
+            afficherListe(pst);}
         catch (IOException | SQLException e) {
             e.printStackTrace();
         }
@@ -142,7 +145,7 @@ public class ListeChambresController implements Initializable {
         try {
             pst = connexion.prepareStatement(requete);
             pst.setInt(1, numChoix);
-            AfficherListeChambre(pst);
+            afficherListe(pst);
 
         } catch (IOException e) {
             e.printStackTrace();
