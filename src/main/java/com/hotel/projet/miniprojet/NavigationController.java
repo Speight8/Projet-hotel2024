@@ -66,7 +66,7 @@ public class NavigationController {
          }
      }*/
     //methode generique pour remplir un objet selon une requete utile pour : init / recherche /trie
-
+/*
     public static Object remplirObjet(Object obj, PreparedStatement pst) throws IOException, SQLException {
         try {
             ResultSet rs = pst.executeQuery();
@@ -120,7 +120,7 @@ public class NavigationController {
             }
 
         }
-    }
+    }*/
 }
 
 
