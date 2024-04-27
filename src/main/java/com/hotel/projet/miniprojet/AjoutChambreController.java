@@ -27,9 +27,8 @@ public  class AjoutChambreController extends AjoutController implements Initiali
     private TextField typeSdb;
     @FXML
     private ComboBox<String> boxEtat;
-
     private ObservableList<String> listeEtat = FXCollections.observableArrayList("Disponible", "Indisponible", "En rénovation","Autre");
-
+    Chambre chambre;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -44,11 +43,11 @@ public  class AjoutChambreController extends AjoutController implements Initiali
         String typesdb = typeSdb.getText();
         float prx = Float.parseFloat(prix.getText());
         String etat = boxEtat.getSelectionModel().getSelectedItem();
-        Chambre chambre = new Chambre(nChbre,nbLts,typesdb,etat,prx);
+        this.chambre = new Chambre(nChbre,nbLts,typesdb,etat,prx);
         if(confirmationAjout){
-            ajoutChambreBD(chambre);
+            ajoutChambreBD(this.chambre);
         } else if (confirmationModification) {
-            modifierChambreBD(chambre);
+            modifierChambreBD(this.chambre);
         }
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
@@ -98,12 +97,12 @@ public  class AjoutChambreController extends AjoutController implements Initiali
             pst.executeUpdate();
             ListeChambresController.listeChambre.set(ListeChambresController.indiceItemModifie,chambre);
             ListeChambresController.observeChambre.set(ListeChambresController.indiceItemModifie,chambre);
-            confirmationModification = false;
+
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        confirmationModification = false;
 
     }
     }
