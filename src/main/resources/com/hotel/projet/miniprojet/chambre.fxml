@@ -36,13 +36,13 @@
         </AnchorPane>
         <AnchorPane layoutX="21.0" layoutY="95.0" prefHeight="570.0" prefWidth="690.0" style="-fx-background-color: #BEE9E7;">
             <children>
-                <TextField fx:id="search" layoutX="78.0" layoutY="23.0" prefHeight="26.0" prefWidth="180.0" promptText="Type Chambre" />
+                <TextField fx:id="search" layoutX="78.0" layoutY="23.0" prefHeight="26.0" prefWidth="118.0" promptText="Type Chambre" />
                 <!--<ImageView fitHeight="20.0" fitWidth="20.0" layoutX="28.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@roomLogo.png" />
                     </image>
                 </ImageView>-->
-                <TableView fx:id="tableChambres" layoutX="28.0" layoutY="70.0" prefHeight="470.0" prefWidth="634.0">
+                <TableView fx:id="tableChambres" layoutX="28.0" layoutY="70.0" prefHeight="406.0" prefWidth="634.0">
                     <columns>
                         <TableColumn fx:id="numChambre" prefWidth="148.0" text="Numéro de chambre" />
                         <TableColumn fx:id="etat" prefWidth="124.0" text="Etat" />

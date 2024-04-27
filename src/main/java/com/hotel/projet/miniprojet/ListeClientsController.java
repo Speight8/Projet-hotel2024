@@ -35,7 +35,9 @@ public class ListeClientsController extends ListeController implements Initializ
     private TableColumn<Client, String> telClient;
     @FXML
     private ComboBox<Integer> meilleurClient;
-    Class Integer;
+    @FXML
+    private Button BoutonRecherche;
+
 
 
     private ObservableList<Integer> listeNombres = FXCollections.observableArrayList(1, 2, 3, 4,5);
@@ -133,6 +135,10 @@ public class ListeClientsController extends ListeController implements Initializ
     @FXML
     void vershome(MouseEvent event) {
         NavigationController.retourHomePage(event);
+    }
+    @FXML
+    void rechercheClient(ActionEvent event) {
+
     }
 
 }

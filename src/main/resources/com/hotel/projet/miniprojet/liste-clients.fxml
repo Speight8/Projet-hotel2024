@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.TextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -32,7 +33,7 @@
       </AnchorPane>
       <AnchorPane layoutY="90.0" prefHeight="312.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;">
          <children>
-               <TableView fx:id="listeClients" layoutY="60.0" prefHeight="253.0" prefWidth="600.0">
+               <TableView fx:id="listeClients" layoutY="60.0" prefHeight="187.0" prefWidth="600.0">
                <columns>
                   <TableColumn fx:id="nomClient" prefWidth="100.0" text="Nom Client " />
                   <TableColumn fx:id="cinClient" prefWidth="100.0" text="Cin" />
@@ -42,10 +43,12 @@
                   <TableColumn fx:id="telClient" prefWidth="100.0" text="Telephone" />
                </columns>
             </TableView>
-                <Button fx:id="boutonSupprimerClient" layoutX="141.0" layoutY="14.0" onAction="#gestionSupprimerClient" opacity="0.98" prefHeight="36.0" prefWidth="140.0" style="-fx-background-color: #1B4B65; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Supprimer Client" />
-                <Button fx:id="boutonAjouterClient" layoutX="14.0" layoutY="14.0" onAction="#gestionAjoutClient" style="-fx-background-color: #1B4B65; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Ajouter Client" />
-                <Button fx:id="boutonModifierClient" layoutX="291.0" layoutY="14.0" onAction="#gestionModifierClient" prefHeight="36.0" prefWidth="127.0" style="-fx-background-color: #1B4B65; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Modifier Client" />
-            <ComboBox fx:id="meilleurClient" layoutX="502.0" layoutY="19.0" onAction="#choixMeilleur" prefHeight="26.0" prefWidth="92.0" promptText="Meilleur" />
+                <Button fx:id="boutonSupprimerClient" layoutX="141.0" layoutY="255.0" onAction="#gestionSupprimerClient" opacity="0.98" prefHeight="36.0" prefWidth="140.0" style="-fx-background-color: #1B4B65; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Supprimer Client" />
+                <Button fx:id="boutonAjouterClient" layoutX="14.0" layoutY="255.0" onAction="#gestionAjoutClient" style="-fx-background-color: #1B4B65; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Ajouter Client" />
+                <Button fx:id="boutonModifierClient" layoutX="291.0" layoutY="255.0" onAction="#gestionModifierClient" prefHeight="36.0" prefWidth="127.0" style="-fx-background-color: #1B4B65; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 5px;" text="Modifier Client" />
+            <ComboBox fx:id="meilleurClient" layoutX="487.0" layoutY="19.0" onAction="#choixMeilleur" prefHeight="29.0" prefWidth="107.0" promptText="Meilleur" />
+            <TextField fx:id="recherche" floatText="Rechercher Client" layoutX="14.0" layoutY="20.0" />
+            <Button fx:id="BoutonRecherche" layoutX="183.0" layoutY="27.0" onAction="#rechercheClient" prefHeight="30.0" prefWidth="116.0" style="-fx-background-color: e3e3e3; -fx-text-fill: black; -fx-font-size: 14px; -fx-padding: 8px 16px; -fx-border-radius: 20px;" text="Recherche" />
          </children>
       </AnchorPane>
       <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="15.0" layoutY="17.0">

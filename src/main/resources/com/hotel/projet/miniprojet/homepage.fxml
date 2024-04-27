@@ -35,43 +35,35 @@
             </Label>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="holdPane" layoutX="280.0" layoutY="124.0" prefHeight="675.0" prefWidth="720.0">
-            <children>
-                 <ImageView fitHeight="675.0" fitWidth="1007.0" layoutX="-284.0" layoutY="1.0" opacity="0.88">
-                    <image>
-                        <Image url="@homepagebg.jpg" />
-                    </image>
-                </ImageView>
-                <AnchorPane layoutX="-117.0" layoutY="116.0" opacity="0.8" prefHeight="428.0" prefWidth="701.0" style="-fx-background-color: #ffffff;">
-                    <children>
-                        <Button fx:id="dash2" alignment="BASELINE_LEFT" layoutX="396.0" layoutY="230.0" mnemonicParsing="false" onAction="#redirectToInterface" prefHeight="80.0" prefWidth="228.0" style="-fx-background-color: #BEE9E7;" text="Gestion Des Chambres" textAlignment="CENTER">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Button>
-                        <Button fx:id="dash4" alignment="BASELINE_LEFT" layoutX="53.0" layoutY="95.0" mnemonicParsing="false" onAction="#redirectToInterface" prefHeight="80.0" prefWidth="228.0" style="-fx-background-color: #BEE9E7;" text="Gestion Des Clients">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Button>
-                        <Button fx:id="dash1" alignment="BASELINE_LEFT" layoutX="53.0" layoutY="230.0" mnemonicParsing="false" onAction="#redirectToInterface" prefHeight="80.0" prefWidth="228.0" style="-fx-background-color: #BEE9E7;" text="Gestion Des Reservations">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Button>
-                        <Button fx:id="dash3" alignment="BASELINE_LEFT" layoutX="396.0" layoutY="95.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="228.0" style="-fx-background-color: #BEE9E7;" text="Gestion de Paiement">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Button>
-                        <Label fx:id="adminName1" layoutX="185.0" layoutY="44.0" prefHeight="28.0" prefWidth="330.0" text="Veuillez selectionner une option" textAlignment="CENTER">
-                            <font>
-                                <Font name="Bookman Old Style Italic" size="18.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </AnchorPane>
-            </children>
-        </AnchorPane>
+          <AnchorPane layoutX="-2.0" layoutY="168.0" prefHeight="632.0" prefWidth="1000.0" style="-fx-background-color: #1B4B65;">
+              <children>
+                  <Button fx:id="dash2" alignment="BASELINE_LEFT" layoutX="596.0" layoutY="370.0" mnemonicParsing="false" onAction="#redirectToInterface" prefHeight="98.0" prefWidth="254.0" style="-fx-background-color: #BEE9E7;" text="Gestion Des Chambres" textAlignment="CENTER">
+                      <font>
+                          <Font size="18.0" />
+                      </font>
+                  </Button>
+                  <Button fx:id="dash4" alignment="BASELINE_LEFT" layoutX="110.0" layoutY="370.0" mnemonicParsing="false" onAction="#redirectToInterface" prefHeight="98.0" prefWidth="254.0" style="-fx-background-color: #BEE9E7;" text="Gestion Des Clients">
+                      <font>
+                          <Font size="18.0" />
+                      </font>
+                  </Button>
+                  <Button fx:id="dash1" alignment="BASELINE_LEFT" layoutX="112.0" layoutY="155.0" mnemonicParsing="false" onAction="#redirectToInterface" prefHeight="98.0" prefWidth="254.0" style="-fx-background-color: #BEE9E7;" text="Gestion Des Reservations">
+                      <font>
+                          <Font size="18.0" />
+                      </font>
+                  </Button>
+                  <Button fx:id="dash3" alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="583.0" layoutY="156.0" mnemonicParsing="false" prefHeight="98.0" prefWidth="254.0" style="-fx-background-color: #BEE9E7;" text="Deconnexion" textAlignment="CENTER">
+                      <font>
+                          <Font size="18.0" />
+                      </font>
+                  </Button>
+                  <Label fx:id="adminName1" layoutX="110.0" layoutY="50.0" prefHeight="31.0" prefWidth="410.0" text="Veuillez selectionner une option" textAlignment="CENTER" textFill="#62b9cb">
+                      <font>
+                          <Font name="Berlin Sans FB Demi Bold" size="27.0" />
+                      </font>
+                  </Label>
+              </children>
+          </AnchorPane>
+        <AnchorPane fx:id="holdPane" layoutY="125.0" prefHeight="42.0" prefWidth="1000.0" style="-fx-background-color: #ffffff;" />
     </children>
 </AnchorPane>
