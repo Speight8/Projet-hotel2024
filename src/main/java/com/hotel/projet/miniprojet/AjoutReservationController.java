@@ -18,6 +18,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import static com.hotel.projet.miniprojet.NavigationController.messageErreur;
 import static java.lang.Integer.parseInt;
 
 public  class AjoutReservationController extends AjoutController implements Initializable {
@@ -162,9 +163,9 @@ public  class AjoutReservationController extends AjoutController implements Init
 
             ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (NumberFormatException e) {
-            NavigationController.messageErreur("Veuillez saisir un numéro de téléphone valide.", "Erreur de saisie");
+            messageErreur("Veuillez saisir un numéro de téléphone valide.", "Erreur de saisie");
         } catch (IllegalArgumentException e) {
-            NavigationController.messageErreur(e.getMessage(), "Erreur de saisie");
+            messageErreur(e.getMessage(), "Erreur de saisie");
         }
     }
 
@@ -180,10 +181,14 @@ public  class AjoutReservationController extends AjoutController implements Init
     void gestionDepart(ActionEvent event) {
         int nbNuits = dateDepart.getValue().compareTo(dateArrivee.getValue());
         duree.setText("" + nbNuits);
-        float prixNuit = Float.parseFloat(prix.getText());
-        total.setText("" + (prixNuit * nbNuits));
+        try {
+            float prixNuit = Float.parseFloat(prix.getText());
+            total.setText("" + (prixNuit * nbNuits));
+        }
+        catch (Exception e){
+            messageErreur("veuillez","Oops");
+        }
     }
-
     @FXML
     void gestionNbLits(ActionEvent event) {
         if (!nbLits.getSelectionModel().getSelectedItem().equals("")) {

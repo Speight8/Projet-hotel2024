@@ -45,11 +45,10 @@ public  class AjoutChambreController extends AjoutController implements Initiali
             String typesdb = typeSdb.getText();
             float prx = Float.parseFloat(prix.getText());
             String etat = boxEtat.getSelectionModel().getSelectedItem();
-
             if (nChbre <= 0 || nbLts <= 0 || prx <= 0) {
                 throw new IllegalArgumentException("Les valeurs doivent être supérieures à zéro.");
             }
-            if (chambreExisteDeja(nChbre)) {
+            if (chambreExisteDeja(nChbre) && confirmationAjout) {
                 throw new IllegalArgumentException("Ce numéro de chambre est déjà utilisé.");
             }
             this.chambre = new Chambre(nChbre, nbLts, typesdb, etat, prx);
@@ -62,14 +61,17 @@ public  class AjoutChambreController extends AjoutController implements Initiali
         } catch (NumberFormatException e) {
             NavigationController.messageErreur("Veuillez saisir des nombres valides.", "Erreur de saisie");
         } catch (IllegalArgumentException | SQLException e) {
+            e.printStackTrace();
             NavigationController.messageErreur(e.getMessage(), "Erreur de saisie");
         }
     }
 
     boolean chambreExisteDeja(int nChbre) throws SQLException {
-        String query = "SELECT * FROM client WHERE cin_client = ?";
-        ResultSet rs = pst.executeQuery(query);
-        Integer nbOccurences =0;
+        String query = "SELECT * FROM chambre WHERE num_chambre = ?";
+        pst=connexion.prepareStatement(query);
+        pst.setInt(1,nChbre);
+        ResultSet rs = pst.executeQuery();
+        int nbOccurences =0;
         while (rs.next()) {
             nbOccurences  +=1;
         }
@@ -89,6 +91,7 @@ public  class AjoutChambreController extends AjoutController implements Initiali
     void ajoutChambreBD(Chambre chambre){
         String query = "INSERT INTO chambre (num_chambre, nb_lits, type_sdb, prix,etat) VALUES (?,?,?,?,?)";
         try {
+            connexion = connexionBD.getConnection();
             pst = connexion.prepareStatement(query);
             String etat = boxEtat.getSelectionModel().getSelectedItem();
             pst.setInt(1, chambre.getNumChambre());

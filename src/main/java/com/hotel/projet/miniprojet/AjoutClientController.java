@@ -31,6 +31,7 @@ public  class AjoutClientController extends AjoutController implements Initializ
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         connexionBD = new ConnexionBD();
+        connexion = connexionBD.getConnection();
     }
 
     @FXML
@@ -52,9 +53,6 @@ public  class AjoutClientController extends AjoutController implements Initializ
             }
             if (!isValidEmail(emailClient)) {
                 throw new IllegalArgumentException("Veuillez saisir une adresse e-mail valide.");
-            }
-            if (!isValidPhoneNumber(telephone)) {
-                throw new IllegalArgumentException("Veuillez saisir un numéro de téléphone valide.");
             }
 
             this.client = new Client(cinClient, nom, nationalite, telephone, genre, emailClient);
@@ -80,6 +78,7 @@ public  class AjoutClientController extends AjoutController implements Initializ
         return phoneNumber.matches("\\d{10}");
     }
     boolean isValidCin(Long cin) throws SQLException {
+
         String query = "SELECT * FROM client WHERE cin_client = ?";
         pst = connexion.prepareStatement(query);
         pst.setLong(1, cin);
