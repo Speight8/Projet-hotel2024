@@ -12,16 +12,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="675.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.projet.miniprojet.ListeReservationsController">
+<AnchorPane prefHeight="423.0" prefWidth="619.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.projet.miniprojet.ListeReservationsController">
    <children>
-      <AnchorPane layoutX="15.0" layoutY="8.0" prefHeight="85.0" prefWidth="690.0" style="-fx-background-color: #1B4B65;">
+      <AnchorPane prefHeight="86.0" prefWidth="627.0" style="-fx-background-color: #1B4B65;">
          <children>
             <Label layoutX="56.0" layoutY="25.0" text="Liste des réservations" textFill="#caebff">
                <font>
                   <Font name="System Bold" size="26.0" />
                </font>
             </Label>
-            <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="626.0" layoutY="9.0" onMouseClicked="#RetourHomePage">
+            <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="555.0" layoutY="14.0" onMouseClicked="#RetourHomePage">
                <image>
                   <Image url="@icone-home-page-blanc.png" />
                </image>
@@ -33,24 +33,24 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="15.0" layoutY="95.0" prefHeight="570.0" prefWidth="690.0" style="-fx-background-color: #4A919E;">
+      <AnchorPane layoutY="90.0" prefHeight="296.0" prefWidth="627.0" style="-fx-background-color: #4A919E;">
          <children>
             <TextField fx:id="recherche" layoutX="239.0" layoutY="24.0" onKeyReleased="#gestionRecherche" prefHeight="25.0" prefWidth="212.0" promptText="Numéro de la Réservation" />
         
-            <TableView fx:id="tableReservation" editable="true" layoutX="28.0" layoutY="74.0" prefHeight="470.0" prefWidth="634.0">
+            <TableView fx:id="tableReservation" editable="true" layoutX="10.0" layoutY="83.0" prefHeight="174.0" prefWidth="606.0">
                <columns>
                   <TableColumn fx:id="numRes" prefWidth="127.20001220703125" text="Num Réservation" />
                   <TableColumn fx:id="numChambre" minWidth="95.0" prefWidth="109.5999755859375" text="Num Chambre" />
                   <TableColumn fx:id="nom_client" minWidth="4.0" prefWidth="57.5999755859375" text="Client" />
-                  <TableColumn fx:id="dateArrive" prefWidth="90.39996337890625" text="Arrivée" />
-                  <TableColumn fx:id="dateDepart" minWidth="0.0" prefWidth="68.0" text="Départ" />
-                  <TableColumn fx:id="duree" minWidth="7.0" prefWidth="55.199951171875" text="Durée" />
-                  <TableColumn fx:id="prixTotal" prefWidth="69.60003662109375" text="Prix total" />
-                  <TableColumn fx:id="status" prefWidth="59.20001220703125" text="Statut" />
+                  <TableColumn fx:id="dateArrive" prefWidth="54.39996337890625" text="Arrivée" />
+                  <TableColumn fx:id="dateDepart" minWidth="0.0" prefWidth="57.5999755859375" text="Départ" />
+                  <TableColumn fx:id="duree" minWidth="7.0" prefWidth="57.5999755859375" text="Durée" />
+                  <TableColumn fx:id="prixTotal" prefWidth="58.40008544921875" text="Prix total" />
+                  <TableColumn fx:id="status" prefWidth="81.60001220703123" text="Statut" />
                </columns>
             </TableView>
-            <ComboBox fx:id="sort" layoutX="532.0" layoutY="23.0" prefHeight="25.0" prefWidth="110.0" promptText="Filtrer" />
-            <Button fx:id="buttonCreerRes" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#creerRes" prefHeight="26.0" prefWidth="146.0" text="Créer une réservation" textAlignment="CENTER" textFill="#1b4b65" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
+            <ComboBox fx:id="sort" layoutX="487.0" layoutY="23.0" prefHeight="25.0" prefWidth="110.0" promptText="Filtrer" />
+            <Button fx:id="buttonCreerRes" layoutX="31.0" layoutY="22.0" mnemonicParsing="false" onAction="#creerRes" prefHeight="26.0" prefWidth="146.0" text="Créer une réservation" textAlignment="CENTER" textFill="#1b4b65" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
@@ -61,5 +61,6 @@
             </ImageView>
          </children>
       </AnchorPane>
+      <AnchorPane layoutY="392.0" prefHeight="38.0" prefWidth="627.0" style="-fx-background-color: #1B4B65;" />
    </children>
 </AnchorPane>

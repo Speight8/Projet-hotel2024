@@ -28,6 +28,7 @@ public  class AjoutClientController extends AjoutController implements Initializ
     @FXML
     private TextField phone;
     Client client;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         connexionBD = new ConnexionBD();

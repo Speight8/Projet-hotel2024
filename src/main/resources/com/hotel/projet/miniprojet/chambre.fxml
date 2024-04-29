@@ -11,30 +11,30 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="675.0" prefWidth="720.0" style="-fx-background-color: #CAEBFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.projet.miniprojet.ListeChambresController">
+<AnchorPane style="-fx-background-color: #1B4B65;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.projet.miniprojet.ListeChambresController">
     <children>
-        <AnchorPane layoutX="21.0" layoutY="14.0" prefHeight="85.0" prefWidth="690.0" style="-fx-background-color: #BEE9E7;">
+        <AnchorPane layoutX="-8.0" prefHeight="86.0" prefWidth="654.0" style="-fx-background-color: #1B4B65;">
             <children>
 
-                <Label layoutX="78.0" layoutY="26.0" text="Gestion des chambres" textFill="#1B4B65">
+                <Label layoutX="85.0" layoutY="26.0" text="Gestion des chambres" textFill="#c1e9ff">
                     <font>
                         <Font name="System Bold" size="28.0" />
                     </font>
                 </Label>
 
-            <ImageView fitHeight="49.0" fitWidth="42.0" layoutX="634.0" layoutY="22.0" onMouseClicked="#versHome" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="49.0" fitWidth="42.0" layoutX="589.0" layoutY="17.0" onMouseClicked="#versHome" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@home.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="50.0" fitWidth="49.0" layoutX="14.0" layoutY="19.0">
+            <ImageView fitHeight="50.0" fitWidth="49.0" layoutX="21.0" layoutY="19.0">
                <image>
                   <Image url="@bed2.png" />
                </image>
             </ImageView>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="21.0" layoutY="95.0" prefHeight="570.0" prefWidth="690.0" style="-fx-background-color: #BEE9E7;">
+        <AnchorPane layoutX="-7.0" layoutY="86.0" prefHeight="380.0" prefWidth="652.0" style="-fx-background-color: #4A919E;">
             <children>
                 <TextField fx:id="search" layoutX="78.0" layoutY="23.0" prefHeight="26.0" prefWidth="118.0" promptText="Type Chambre" />
                 <!--<ImageView fitHeight="20.0" fitWidth="20.0" layoutX="28.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
@@ -42,7 +42,7 @@
                         <Image url="@roomLogo.png" />
                     </image>
                 </ImageView>-->
-                <TableView fx:id="tableChambres" layoutX="28.0" layoutY="70.0" prefHeight="406.0" prefWidth="634.0">
+                <TableView fx:id="tableChambres" layoutX="59.0" layoutY="71.0" prefHeight="270.0" prefWidth="526.0">
                     <columns>
                         <TableColumn fx:id="numChambre" prefWidth="148.0" text="Numéro de chambre" />
                         <TableColumn fx:id="etat" prefWidth="124.0" text="Etat" />
@@ -51,9 +51,9 @@
                         <TableColumn fx:id="prix" minWidth="4.0" prefWidth="99.20001220703125" text="Prix" />
                     </columns>
                 </TableView>
-            <ComboBox fx:id="Choix" layoutX="546.0" layoutY="23.0" onAction="#ChoixFiltre" prefHeight="26.0" prefWidth="124.0" promptText="Choix Filtre" />
-                <Button fx:id="ajoutChbre" layoutX="407.0" layoutY="23.0" mnemonicParsing="false" onAction="#gestionAjoutChambre" prefHeight="26.0" prefWidth="124.0" text="Nouvelle chambre" />
-            <Button layoutX="272.0" layoutY="24.0" mnemonicParsing="false" onAction="#gestionModifierChambre" prefHeight="26.0" prefWidth="118.0" text="Modifier chambre" />
+            <ComboBox fx:id="Choix" layoutX="498.0" layoutY="22.0" onAction="#ChoixFiltre" prefHeight="26.0" prefWidth="124.0" promptText="Choix Filtre" />
+                <Button fx:id="ajoutChbre" layoutX="361.0" layoutY="23.0" mnemonicParsing="false" onAction="#gestionAjoutChambre" prefHeight="26.0" prefWidth="124.0" text="Nouvelle chambre" />
+            <Button layoutX="233.0" layoutY="23.0" mnemonicParsing="false" onAction="#gestionModifierChambre" prefHeight="26.0" prefWidth="118.0" text="Modifier chambre" />
 
                 <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="45.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -62,5 +62,6 @@
                 </ImageView>
             </children>
         </AnchorPane>
+      <AnchorPane layoutX="-6.0" layoutY="460.0" prefHeight="26.0" prefWidth="652.0" style="-fx-background-color: #1B4B65;" />
     </children>
 </AnchorPane>
