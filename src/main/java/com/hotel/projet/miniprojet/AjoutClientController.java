@@ -44,7 +44,6 @@ public  class AjoutClientController extends AjoutController implements Initializ
             String emailClient = email.getText();
             String telephone = phone.getText();
 
-            // Vérification des champs obligatoires
             if (nom.isEmpty() || nationalite.isEmpty() || genre.isEmpty() || emailClient.isEmpty() || telephone.isEmpty()) {
                 throw new IllegalArgumentException("Veuillez remplir tous les champs obligatoires.");
             }
