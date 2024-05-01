@@ -20,26 +20,26 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="29.0" layoutY="72.0" prefHeight="20.0" prefWidth="125.0" text="Nombre de lits" textFill="WHITE">
+            <Label layoutX="138.0" layoutY="65.0" prefHeight="20.0" prefWidth="125.0" text="Nombre de lits" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="nbLits" layoutX="29.0" layoutY="100.0" onAction="#gestionNbLits" prefHeight="25.0" prefWidth="174.0" promptText="Choisir le nombre de lits" />
-            <Label layoutX="260.0" layoutY="72.0" text="Numéro chambre" textFill="WHITE">
+            <ComboBox fx:id="nbLits" layoutX="138.0" layoutY="93.0" onAction="#gestionNbLits" prefHeight="25.0" prefWidth="174.0" promptText="Choisir le nombre de lits" />
+            <Label layoutX="369.0" layoutY="65.0" text="Numéro chambre" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="numChambre" layoutX="256.0" layoutY="100.0" onAction="#gestionPrixChambre" prefHeight="25.0" prefWidth="174.0" promptText="Choisir num de chambre" />
-            <DatePicker fx:id="dateArrivee" layoutX="32.0" layoutY="201.0" onAction="#gestionArrivee" promptText="Date d'arrivée" />
-            <DatePicker fx:id="dateDepart" layoutX="261.0" layoutY="201.0" onAction="#gestionDepart" promptText="Date de départ" />
-            <Label layoutX="32.0" layoutY="167.0" text="Date d'arrivée" textFill="WHITE">
+            <ComboBox fx:id="numChambre" layoutX="365.0" layoutY="93.0" onAction="#gestionPrixChambre" prefHeight="25.0" prefWidth="174.0" promptText="Choisir num de chambre" />
+            <DatePicker fx:id="dateArrivee" layoutX="141.0" layoutY="194.0" onAction="#gestionArrivee" promptText="Date d'arrivée" />
+            <DatePicker fx:id="dateDepart" layoutX="370.0" layoutY="194.0" onAction="#gestionDepart" promptText="Date de départ" />
+            <Label layoutX="141.0" layoutY="160.0" text="Date d'arrivée" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="260.0" layoutY="169.0" prefHeight="18.0" prefWidth="100.0" text="Date de départ" textFill="WHITE">
+            <Label layoutX="369.0" layoutY="162.0" prefHeight="18.0" prefWidth="100.0" text="Date de départ" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font></Label>
@@ -58,13 +58,13 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="duree" layoutX="110.0" layoutY="250.0" prefHeight="18.0" prefWidth="126.0">
+            <Label fx:id="duree" layoutX="110.0" layoutY="250.0" prefHeight="18.0" prefWidth="126.0" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="prix" layoutX="111.0" layoutY="282.0" prefHeight="18.0" prefWidth="86.0" />
-            <Label fx:id="total" layoutX="111.0" layoutY="312.0" prefHeight="18.0" prefWidth="78.0" />
+            <Label fx:id="prix" layoutX="111.0" layoutY="282.0" prefHeight="18.0" prefWidth="86.0" textFill="WHITE" />
+            <Label fx:id="total" layoutX="111.0" layoutY="312.0" prefHeight="18.0" prefWidth="78.0" textFill="WHITE" />
             <ImageView fitHeight="27.0" fitWidth="30.0" layoutX="17.0" layoutY="16.0">
                <image>
                   <Image url="@appointment.png" />
@@ -83,7 +83,7 @@
             <Circle layoutX="29.0" layoutY="325.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="15.0" layoutY="359.0" prefHeight="306.0" prefWidth="690.0" style="-fx-background-color: #4A919E;">
+      <AnchorPane layoutX="15.0" layoutY="364.0" prefHeight="306.0" prefWidth="690.0" style="-fx-background-color: #4A919E;">
          <children>
             <TextField fx:id="nomClient" layoutX="121.0" layoutY="49.0" prefHeight="25.0" prefWidth="174.0" promptText="Nom et prénom" />
             <TextField fx:id="numTelClient" layoutX="121.0" layoutY="118.0" prefHeight="25.0" prefWidth="174.0" promptText="Numéro tél" />

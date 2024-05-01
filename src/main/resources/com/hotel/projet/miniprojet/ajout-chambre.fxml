@@ -9,43 +9,43 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="450.0" style="-fx-background-color: #00334A;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.projet.miniprojet.AjoutChambreController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="484.0" prefWidth="450.0" style="-fx-background-color: #00334A;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotel.projet.miniprojet.AjoutChambreController">
    <children>
 
-      <Label layoutX="91.0" layoutY="72.0" prefHeight="76.0" prefWidth="150.0" text="Ajouter" textFill="#007fa9">
+      <Label layoutX="91.0" layoutY="53.0" prefHeight="76.0" prefWidth="150.0" text="Ajouter" textFill="#007fa9">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <TextField fx:id="numChambre" layoutX="107.0" layoutY="209.0" prefHeight="25.0" prefWidth="250.0" promptText="Numéro de la chambre" />
-      <TextField fx:id="nbLits" layoutX="107.0" layoutY="256.0" prefHeight="25.0" prefWidth="250.0" promptText="Nombre de Lits" />
-      <TextField fx:id="prix" layoutX="107.0" layoutY="350.0" prefHeight="25.0" prefWidth="250.0" promptText="Prix" />
-      <Button fx:id="add" layoutX="160.0" layoutY="437.0" mnemonicParsing="false" onAction="#valider" prefHeight="46.0" prefWidth="136.0" style="-fx-background-color: #007FA9;" text="Valider" textFill="WHITE" />
-    <ImageView fitHeight="26.0" fitWidth="32.0" layoutX="74.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="numChambre" layoutX="107.0" layoutY="148.0" prefHeight="25.0" prefWidth="250.0" promptText="Numéro de la chambre" />
+      <TextField fx:id="nbLits" layoutX="107.0" layoutY="195.0" prefHeight="25.0" prefWidth="250.0" promptText="Nombre de Lits" />
+      <TextField fx:id="prix" layoutX="107.0" layoutY="289.0" prefHeight="25.0" prefWidth="250.0" promptText="Prix" />
+      <Button fx:id="add" layoutX="160.0" layoutY="376.0" mnemonicParsing="false" onAction="#valider" prefHeight="46.0" prefWidth="136.0" style="-fx-background-color: #007FA9;" text="Valider" textFill="WHITE" />
+    <ImageView fitHeight="26.0" fitWidth="32.0" layoutX="74.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@bed.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="75.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="75.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@number-one.png" />
          </image>
 
       </ImageView>
-      <Label layoutX="214.0" layoutY="87.0" text="Chambre" textFill="WHITE">
+      <Label layoutX="214.0" layoutY="68.0" text="Chambre" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <TextField fx:id="typeSdb" layoutX="107.0" layoutY="300.0" prefHeight="25.0" prefWidth="250.0" promptText="Type salle de bain" />
-       <ImageView fitHeight="26.0" fitWidth="32.0" layoutX="73.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="typeSdb" layoutX="107.0" layoutY="239.0" prefHeight="25.0" prefWidth="250.0" promptText="Type salle de bain" />
+       <ImageView fitHeight="26.0" fitWidth="32.0" layoutX="73.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true">
            <Image url="@bathroom.png" />
        </ImageView>
-      <ImageView fitHeight="26.0" fitWidth="32.0" layoutX="73.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="26.0" fitWidth="32.0" layoutX="73.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@dollar.png" />
          </image>
       </ImageView>
-      <ComboBox fx:id="boxEtat" layoutX="150.0" layoutY="395.0" prefWidth="150.0" promptText="Etat de la chambre" />
+      <ComboBox fx:id="boxEtat" layoutX="150.0" layoutY="334.0" prefWidth="150.0" promptText="Etat de la chambre" />
    </children>
 </AnchorPane>

@@ -45,8 +45,7 @@ public class ListeReservationsController extends  ListeController implements Ini
     private TextField recherche;
     @FXML
     private TableColumn<Reservation, Integer> numChambre;
-    @FXML
-    private ComboBox<?> sort;
+
     @FXML
     private TableColumn<Reservation, String> status;
 

@@ -48,7 +48,7 @@ public  class AjoutClientController extends AjoutController implements Initializ
             if (nom.isEmpty() || nationalite.isEmpty() || genre.isEmpty() || emailClient.isEmpty() || telephone.isEmpty()) {
                 throw new IllegalArgumentException("Veuillez remplir tous les champs obligatoires.");
             }
-            if (!isValidCin(cinClient)) {
+            if (!isValidCin(cinClient) && confirmationAjout) {
                 throw new IllegalArgumentException("Le client avec ce CIN existe déjà");
             }
             if (!isValidEmail(emailClient)) {

@@ -116,13 +116,10 @@ public  class AjoutReservationController extends AjoutController implements Init
             String checkIn = dateArrivee.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             String checkOut = dateDepart.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             Integer nChbre = numChambre.getSelectionModel().getSelectedItem();
-
             // Vérification des champs obligatoires
             if (nom.isEmpty() || nationalite.isEmpty() || genre.isEmpty() || email.isEmpty() || telephone.isEmpty() || checkIn.isEmpty() || checkOut.isEmpty() || nChbre == null) {
                 throw new IllegalArgumentException("Veuillez remplir tous les champs obligatoires.");
             }
-
-            // Vérification du format de l'email (optionnel)
             if (!isValidEmail(email)) {
                 throw new IllegalArgumentException("Veuillez saisir une adresse e-mail valide.");
             }
@@ -160,8 +157,8 @@ public  class AjoutReservationController extends AjoutController implements Init
             pst = connexion.prepareStatement(updateChambre);
             pst.setInt(1, nChbre);
             pst.executeUpdate();
+            NavigationController.retourPageBouton(event,"liste-reservations.fxml");
 
-            ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (NumberFormatException e) {
             messageErreur("Veuillez saisir un numéro de téléphone valide.", "Erreur de saisie");
         } catch (IllegalArgumentException e) {
@@ -214,9 +211,7 @@ public  class AjoutReservationController extends AjoutController implements Init
     }
     @FXML
     void gestionAnnulation(ActionEvent event) {
-       // NavigationUtils.retourPageBouton(event, "ajout-reservation.fxml");
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-
+        NavigationController.retourPageBouton(event,"liste-reservations.fxml");
     }
 
 }
